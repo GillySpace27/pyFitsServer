@@ -11,13 +11,11 @@ import time
 import logging
 import webbrowser
 from astropy.io import fits
-from astropy.io.fits import Header
 from PIL import Image
 from astropy.utils.exceptions import AstropyDeprecationWarning
-from astropy.io.fits.verify import VerifyWarning
 
 # Variable to control whether to open the browser
-OPEN_BROWSER = False
+OPEN_BROWSER = True
 
 class FitsPreviewServerTest(unittest.TestCase):
 
@@ -66,17 +64,54 @@ class FitsPreviewServerTest(unittest.TestCase):
             cls.server_process.wait()
         logging.info("Server process terminated.")
 
-    def _generate_dummy_fits(self):
-        """Generate a dummy FITS file with EXTNAMEs."""
+    def _generate_dummy_fits(self, extnames=["PRIMARY", "COMPRESSED_IMAGE"]):
+        """Generate a dummy FITS file with specified EXTNAMEs."""
         data = io.BytesIO()
-        primary_header = Header({'EXTNAME': 'PRIMARY'})
-        secondary_header = Header({'EXTNAME': 'COMPRESSED_IMAGE'})
-
-        with fits.HDUList([fits.PrimaryHDU(data=[[1, 2], [3, 4]], header=primary_header),
-                           fits.ImageHDU(data=[[5, 6], [7, 8]], header=secondary_header)]) as hdul:
-            hdul.writeto(data)
+        hdus = [fits.PrimaryHDU()]  # Primary HDU without EXTNAME
+        for extname in extnames:
+            hdu = fits.ImageHDU(data=[[1, 2], [3, 4]])
+            hdu.header['EXTNAME'] = extname
+            hdus.append(hdu)
+        hdul = fits.HDUList(hdus)
+        hdul.writeto(data)
         data.seek(0)
         return data
+
+    def test_list_extnames_post(self):
+        """Test listing EXTNAMEs with a POST request using a file upload."""
+        extnames = ['EXT1', 'EXT2', 'EXT3']
+        fits_data = self._generate_dummy_fits(extnames)
+
+        response = requests.post(
+            'http://127.0.0.1:5000/list_extnames',
+            files={'file': ('test.fits', fits_data.getvalue())},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        response_json = response.json()
+        self.assertIn("extnames", response_json)
+        self.assertEqual(response_json["extnames"], extnames)
+        logging.info("POST request to /list_extnames test passed.")
+
+    def test_list_extnames_get(self):
+        """Test listing EXTNAMEs with a GET request using a file path."""
+        extnames = ['EXT1', 'EXT2', 'EXT3']
+        fits_file_path = 'test_file.fits'
+        with open(fits_file_path, 'wb') as f:
+            f.write(self._generate_dummy_fits(extnames).getvalue())
+
+        response = requests.get(
+            'http://127.0.0.1:5000/list_extnames',
+            params={'file': fits_file_path}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        response_json = response.json()
+        self.assertIn("extnames", response_json)
+        self.assertEqual(response_json["extnames"], extnames)
+        logging.info("GET request to /list_extnames test passed.")
+
+        os.remove(fits_file_path)
 
     def test_health_check(self):
         """Test the health check endpoint."""
@@ -121,20 +156,16 @@ class FitsPreviewServerTest(unittest.TestCase):
         fits_file_path = 'tests/AIA20130101_0000_0171.fits'
         list_extnames_url = 'http://127.0.0.1:5000/list_extnames'
 
-        # First, get the list of EXTNAMEs from the FITS file
         with open(fits_file_path, 'rb') as fits_file:
             response = requests.post(list_extnames_url, files={'file': ('AIA20130101_0000_0171.fits', fits_file)})
             response.raise_for_status()
             extnames = response.json().get("extnames", [])
             if not extnames:
                 self.skipTest("No EXTNAMEs found in FITS file")
-            else:
-                logging.info(f"Extnames found: {extnames}")
+            logging.info(f"Extnames found: {extnames}")
 
-        # Use the last EXTNAME for testing
         extname = extnames[-1]
 
-        # Now, request a preview for the selected EXTNAME
         with open(fits_file_path, 'rb') as fits_file:
             response = requests.post(
                 'http://127.0.0.1:5000/preview',
@@ -143,18 +174,15 @@ class FitsPreviewServerTest(unittest.TestCase):
             )
             response.raise_for_status()
 
-        # Ensure response contains the base64-encoded image
         response_data = response.json()
         self.assertIn('image_base64', response_data)
 
-        # Decode and verify the image data
         image_data = base64.b64decode(response_data['image_base64'])
         with Image.open(io.BytesIO(image_data)) as img:
             img.verify()
 
         logging.info(f"Real FITS file preview test PASSED for EXTNAME: {extname}")
 
-        # Now, test the rendered preview
         if OPEN_BROWSER:
             preview_url = f'http://127.0.0.1:5000/preview_rendered?file={fits_file_path}&extname={extname}'
             webbrowser.open(preview_url)

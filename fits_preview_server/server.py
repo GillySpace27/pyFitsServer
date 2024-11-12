@@ -199,17 +199,31 @@ def health_check():
     logger.info(f"Health check requested - Server uptime: {uptime:.2f} seconds")
     return jsonify({"status": f"Server is running, uptime {uptime:.2f} seconds"}), 200
 
-@app.route('/list_extnames', methods=['POST'])
+@app.route('/list_extnames', methods=['POST', 'GET'])
 def list_extnames():
     """Endpoint to list all EXTNAMEs in a FITS file."""
     try:
-        file = request.files.get('file')
-        if not file:
-            raise ValueError("No file provided")
+        # Handle POST request with file upload
+        if request.method == 'POST':
+            file = request.files.get('file')
+            if not file:
+                raise ValueError("No file provided in POST request")
+            file_data = io.BytesIO(file.read())
 
+        # Handle GET request with file path parameter
+        elif request.method == 'GET':
+            file_path = request.args.get('file')
+            if not file_path:
+                raise ValueError("File parameter is missing in GET request.")
+            if not os.path.exists(file_path):
+                raise ValueError(f"File {file_path} does not exist or is not accessible.")
+            with open(file_path, 'rb') as f:
+                file_data = io.BytesIO(f.read())  # Read the file contents as bytes
+
+        # Process the FITS file to list EXTNAMEs
         extnames = []
-        file.seek(0)  # Ensure we're at the start of the file
-        with fits.open(io.BytesIO(file.read())) as hdul:
+        file_data.seek(0)  # Ensure we're at the start of the file
+        with fits.open(file_data) as hdul:
             for hdu in hdul:
                 extname = hdu.header.get('EXTNAME')
                 if extname:
@@ -219,8 +233,10 @@ def list_extnames():
         return jsonify({"extnames": extnames}), 200
 
     except ValueError as e:
+        logger.error(f"ValueError in /list_extnames: {str(e)}")
         return jsonify({"error": str(e)}), 400
     except Exception as e:
+        logger.error(f"Unexpected error in /list_extnames: {str(e)}")
         return handle_error(e)
 
 if __name__ == "__main__":
