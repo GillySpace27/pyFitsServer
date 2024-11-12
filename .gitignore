@@ -1,0 +1,5 @@
+extension/node_modules/*
+*.pyc
+node_modules/*
+.vscode/*
+.vscode-test

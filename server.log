@@ -1,0 +1,134 @@
+2024-11-11 18:21:03,002 - INFO - Starting server...
+2024-11-11 18:21:03,018 - WARNING -  * Debugger is active!
+2024-11-11 18:21:03,028 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 18:25:18,031 - INFO -  * Detected change in '/Users/cgilbert/vscode/fitsVSC/.venv/lib/python3.13/site-packages/flask/cli.py', reloading
+2024-11-11 18:29:01,672 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 18:29:01,672 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 18:29:01,673 - INFO -  * Restarting with stat
+2024-11-11 18:29:01,989 - WARNING -  * Debugger is active!
+2024-11-11 18:29:02,021 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 18:29:23,543 - INFO - Health check requested - Server uptime: 21.57 seconds
+2024-11-11 18:29:23,544 - INFO - 127.0.0.1 - - [11/Nov/2024 18:29:23] "GET /health HTTP/1.1" 200 -
+2024-11-11 18:29:23,546 - INFO - Health check requested - Server uptime: 21.57 seconds
+2024-11-11 18:29:23,546 - INFO - 127.0.0.1 - - [11/Nov/2024 18:29:23] "GET /health HTTP/1.1" 200 -
+2024-11-11 18:29:23,549 - INFO - Received file: test.fits
+2024-11-11 18:29:23,549 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 18:29:23,550 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 18:29:23,572 - INFO - 127.0.0.1 - - [11/Nov/2024 18:29:23] "POST /preview HTTP/1.1" 200 -
+2024-11-11 18:29:23,574 - INFO - Received file: invalid.txt
+2024-11-11 18:29:23,574 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 18:29:23,574 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 18:29:23,574 - INFO - 127.0.0.1 - - [11/Nov/2024 18:29:23] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 18:29:23,576 - ERROR - File parameter is missing in request.
+2024-11-11 18:29:23,576 - INFO - 127.0.0.1 - - [11/Nov/2024 18:29:23] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 18:30:18,056 - INFO - Health check requested - Server uptime: 76.08 seconds
+2024-11-11 18:30:18,056 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "GET /health HTTP/1.1" 200 -
+2024-11-11 18:30:18,070 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 18:30:18,071 - INFO - Found EXTNAME: RHEF
+2024-11-11 18:30:18,072 - INFO - Found EXTNAME: FINAL
+2024-11-11 18:30:18,073 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 18:30:18,083 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 18:30:18,083 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 18:30:18,089 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 18:30:18,179 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "POST /preview HTTP/1.1" 200 -
+2024-11-11 18:30:18,321 - INFO - Health check requested - Server uptime: 76.34 seconds
+2024-11-11 18:30:18,321 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "GET /health HTTP/1.1" 200 -
+2024-11-11 18:30:18,325 - INFO - Received file: test.fits
+2024-11-11 18:30:18,325 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 18:30:18,326 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 18:30:18,369 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "POST /preview HTTP/1.1" 200 -
+2024-11-11 18:30:18,374 - INFO - Received file: invalid.txt
+2024-11-11 18:30:18,374 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 18:30:18,375 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 18:30:18,375 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 18:30:18,383 - ERROR - File parameter is missing in request.
+2024-11-11 18:30:18,383 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:18] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 18:30:19,565 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 18:30:19,565 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 18:30:19,571 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 18:30:19,658 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:19] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 18:30:19,897 - INFO - 127.0.0.1 - - [11/Nov/2024 18:30:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-11 21:55:47,555 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 21:55:47,555 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 21:55:47,556 - INFO -  * Restarting with stat
+2024-11-11 21:55:47,909 - WARNING -  * Debugger is active!
+2024-11-11 21:55:47,930 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 21:55:58,036 - INFO - Health check requested - Server uptime: 10.14 seconds
+2024-11-11 21:55:58,037 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "GET /health HTTP/1.1" 200 -
+2024-11-11 21:55:58,053 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 21:55:58,055 - INFO - Found EXTNAME: RHEF
+2024-11-11 21:55:58,055 - INFO - Found EXTNAME: FINAL
+2024-11-11 21:55:58,056 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 21:55:58,066 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 21:55:58,066 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 21:55:58,072 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 21:55:58,177 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "POST /preview HTTP/1.1" 200 -
+2024-11-11 21:55:58,185 - INFO - Health check requested - Server uptime: 10.29 seconds
+2024-11-11 21:55:58,186 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "GET /health HTTP/1.1" 200 -
+2024-11-11 21:55:58,189 - INFO - Received file: test.fits
+2024-11-11 21:55:58,189 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 21:55:58,190 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 21:55:58,206 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "POST /preview HTTP/1.1" 200 -
+2024-11-11 21:55:58,209 - INFO - Received file: invalid.txt
+2024-11-11 21:55:58,209 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 21:55:58,209 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 21:55:58,210 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 21:55:58,212 - ERROR - File parameter is missing in request.
+2024-11-11 21:55:58,212 - INFO - 127.0.0.1 - - [11/Nov/2024 21:55:58] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:03:38,592 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 22:03:38,592 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 22:03:38,592 - INFO -  * Restarting with stat
+2024-11-11 22:03:38,977 - WARNING -  * Debugger is active!
+2024-11-11 22:03:39,001 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:04:38,114 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 22:04:38,114 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 22:04:38,115 - INFO -  * Restarting with stat
+2024-11-11 22:04:38,461 - WARNING -  * Debugger is active!
+2024-11-11 22:04:38,468 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:05:51,234 - INFO - Health check requested - Server uptime: 72.79 seconds
+2024-11-11 22:05:51,234 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:05:51,250 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:05:51,251 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:05:51,251 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:05:51,252 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:05:51,261 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:05:51,262 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:05:51,267 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:05:51,386 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:05:51,394 - INFO - Health check requested - Server uptime: 72.95 seconds
+2024-11-11 22:05:51,395 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:05:51,398 - INFO - Received file: test.fits
+2024-11-11 22:05:51,398 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:05:51,399 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:05:51,415 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:05:51,418 - INFO - Received file: invalid.txt
+2024-11-11 22:05:51,418 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:05:51,418 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:05:51,418 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:05:51,420 - ERROR - File parameter is missing in request.
+2024-11-11 22:05:51,420 - INFO - 127.0.0.1 - - [11/Nov/2024 22:05:51] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:06:08,584 - INFO - Health check requested - Server uptime: 90.14 seconds
+2024-11-11 22:06:08,585 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:06:08,600 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:06:08,600 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:06:08,601 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:06:08,611 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:06:08,611 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:06:08,617 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:06:08,703 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:06:08,713 - INFO - Health check requested - Server uptime: 90.27 seconds
+2024-11-11 22:06:08,713 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:06:08,717 - INFO - Received file: test.fits
+2024-11-11 22:06:08,717 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:06:08,718 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:06:08,736 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:06:08,739 - INFO - Received file: invalid.txt
+2024-11-11 22:06:08,739 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:06:08,739 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:06:08,739 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:06:08,741 - ERROR - File parameter is missing in request.
+2024-11-11 22:06:08,741 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
