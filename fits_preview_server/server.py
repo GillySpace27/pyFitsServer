@@ -67,11 +67,11 @@ def get_fits_hdu_and_cmap(file, extname="compressed"):
                 index = int(extname)
                 hdu = hdul[index]
                 if hdu.data is not None:
-                    return hdu, cmap, wave, extnames
+                    return hdu, cmap, wave, extnames, extnames[int(extname)]
             else:
                 for hdu in hdul:
                     if hdu.header.get('EXTNAME') == extname and hdu.data is not None:
-                        return hdu, cmap, wave, extnames
+                        return hdu, cmap, wave, extnames, extname
         except IndexError:
             raise ValueError(f"Index {extname} is out of range for the HDU list. Available extnames: {extnames}")
 
@@ -95,7 +95,7 @@ async def preview():
         file = request.files.get('file')
         extname = request.form.get('extname')
         validate_file_and_extname(file, extname)
-        hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
+        hdu, cmap, wave, extnames, framename = get_fits_hdu_and_cmap(file, extname)
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
         return jsonify({"status": "Preview generated", "image_base64": image_base64}), 200
@@ -119,67 +119,63 @@ async def preview_rendered():
                 file = io.BytesIO(f.read())
                 file.filename = os.path.basename(file_path)
         validate_file_and_extname(file, extname)
-        hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
+        hdu, cmap, wave, extnames, framename = get_fits_hdu_and_cmap(file, extname)
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
         html_content = f"""
-        <html>
-        <head>
-            <title>FITS Preview</title>
-            <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@9.4.0/dist/panzoom.min.js"></script>
-            <style>
-                body {{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 0;
-                    height: 100%;
-                    background-color: #909090;
-                    font-family: Arial, sans-serif;
-                }}
-                #img-container {{
-                    border: 1px solid black;
-                    overflow: hidden;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    position: relative;
-                }}
-                img {{
-                    max-width: 100%;
-                    height: auto;
-                    cursor: grab;
-                }}
-                img:active {{
-                    cursor: grabbing;
-                }}
-            </style>
-        </head>
-        <body>
-            <div id="img-container">
-                <img id="panzoom-img" src="data:image/png;base64,{image_base64}" alt="FITS Image">
-            </div>
-            <h2>Frame: {extname if extname else 'N/A'}, Shape: {im_normalized.shape}</h2>
-            <h3>List: {[nme for nme in extnames]} </h3>
+<html>
+<head>
+    <title>FITS Preview</title>
+    <style>
+        body {{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            height: 100vh;
+            background-color: #909090;
+            font-family: Arial, sans-serif;
+        }}
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {{
-                    const element = document.getElementById('panzoom-img');
-                    if (element) {{
-                        Panzoom(element, {{
-                            maxScale: 5,
-                            contain: 'inside',
-                            startScale: 1,
-                        }});
-                    }}
-                }});
-            </script>
-        </body>
-        </html>
-        """
+        #img-container {{
+            border: 1px solid black;
+            overflow: hidden;
+            width: 95%;
+            height: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            # object-fit: contain;
+        }}
+
+        img {{
+            # max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: 100%;
+            object-fit: contain;
+            image-rendering: pixelated; /* Ensures discrete square pixels */
+        }}
+
+        img:active {{
+            # cursor: zoom-in;
+        }}
+    </style>
+</head>
+<body>
+    <div id="img-container">
+        <img id="image" src="data:image/png;base64,{image_base64}" alt="FITS Image">
+    </div>
+    <h2>Frame: {framename}, Shape: {im_normalized.shape}</h2>
+    <h3>List: {[nme for nme in extnames]}</h3>
+</body>
+</html>
+"""
+
+
+
 
         return html_content, 200
     except ValueError as e:
