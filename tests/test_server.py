@@ -12,10 +12,9 @@ import logging
 import webbrowser
 from astropy.io import fits
 from PIL import Image
-from astropy.utils.exceptions import AstropyDeprecationWarning
 
 # Variable to control whether to open the browser
-OPEN_BROWSER = True
+OPEN_BROWSER = False
 
 class FitsPreviewServerTest(unittest.TestCase):
 
@@ -25,7 +24,6 @@ class FitsPreviewServerTest(unittest.TestCase):
         logging.basicConfig(level=logging.INFO)
         logging.info("Starting server...")
         try:
-            # Start the server
             cls.server_process = subprocess.Popen(
                 ['python', 'fits_preview_server/server.py'],
                 stdout=subprocess.PIPE,
@@ -46,11 +44,10 @@ class FitsPreviewServerTest(unittest.TestCase):
                 if response.status_code == 200:
                     logging.info("Server health check PASSED.")
                     return
-            except requests.ConnectionError as e:
-                logging.warning(f"Server not running yet (attempt {i+1}/{retries}): {e}")
+            except requests.ConnectionError:
+                logging.warning(f"Server not running yet (attempt {i+1}/{retries})")
                 time.sleep(delay)
 
-        # If the server fails to start, capture and log stdout and stderr
         stdout, stderr = cls.server_process.communicate()
         logging.error(f"Server stdout: {stdout.decode()}")
         logging.error(f"Server stderr: {stderr.decode()}")
@@ -110,7 +107,6 @@ class FitsPreviewServerTest(unittest.TestCase):
         self.assertIn("extnames", response_json)
         self.assertEqual(response_json["extnames"], extnames)
         logging.info("GET request to /list_extnames test passed.")
-
         os.remove(fits_file_path)
 
     def test_health_check(self):
@@ -136,7 +132,7 @@ class FitsPreviewServerTest(unittest.TestCase):
         """Test the response when no file is provided."""
         response = requests.post('http://127.0.0.1:5000/preview')
         self.assertEqual(response.status_code, 400)
-        self.assertIn('File and EXTNAME are required', response.text)
+        self.assertIn('File and EXTNAME are required', response.json()['error'])
         logging.info("Preview no file test PASSED.")
 
     def test_preview_invalid_file(self):

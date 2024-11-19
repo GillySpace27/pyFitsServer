@@ -132,3 +132,780 @@
 2024-11-11 22:06:08,739 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
 2024-11-11 22:06:08,741 - ERROR - File parameter is missing in request.
 2024-11-11 22:06:08,741 - INFO - 127.0.0.1 - - [11/Nov/2024 22:06:08] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:08:44,444 - INFO - Health check requested - Server uptime: 246.00 seconds
+2024-11-11 22:08:44,444 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:08:44,461 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:08:44,461 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:08:44,462 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:08:44,472 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:08:44,472 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:08:44,477 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:08:44,566 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:08:44,759 - INFO - Health check requested - Server uptime: 246.31 seconds
+2024-11-11 22:08:44,759 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:08:44,776 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:08:44,777 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:08:44,780 - INFO - Received file: test.fits
+2024-11-11 22:08:44,804 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:08:44,807 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:08:44,817 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:08:44,872 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:08:44,875 - INFO - Received file: invalid.txt
+2024-11-11 22:08:44,875 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:08:44,875 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:08:44,875 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:08:44,877 - ERROR - File parameter is missing in request.
+2024-11-11 22:08:44,877 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:08:44,975 - INFO - 127.0.0.1 - - [11/Nov/2024 22:08:44] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:11:16,070 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:11:16,168 - INFO -  * Restarting with stat
+2024-11-11 22:11:16,541 - WARNING -  * Debugger is active!
+2024-11-11 22:11:16,561 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:13:56,753 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:13:56,823 - INFO -  * Restarting with stat
+2024-11-11 22:13:57,214 - WARNING -  * Debugger is active!
+2024-11-11 22:13:57,221 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:13:58,275 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:13:58,340 - INFO -  * Restarting with stat
+2024-11-11 22:13:58,725 - WARNING -  * Debugger is active!
+2024-11-11 22:13:58,731 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:14:02,852 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:14:02,965 - INFO -  * Restarting with stat
+2024-11-11 22:14:03,339 - WARNING -  * Debugger is active!
+2024-11-11 22:14:03,349 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:14:07,515 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:14:07,592 - INFO -  * Restarting with stat
+2024-11-11 22:14:07,966 - WARNING -  * Debugger is active!
+2024-11-11 22:14:07,972 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:14:09,703 - INFO - Health check requested - Server uptime: 1.76 seconds
+2024-11-11 22:14:09,703 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:09] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:14:09,720 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:14:09,721 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:14:09,721 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:14:09,722 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:09] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:14:09,732 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:14:09,732 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:14:09,738 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:14:09,832 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:09] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:14:09,986 - INFO - Health check requested - Server uptime: 2.04 seconds
+2024-11-11 22:14:09,986 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:09] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:14:10,015 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:14:10,019 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:14:10,045 - INFO - Received file: test.fits
+2024-11-11 22:14:10,045 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:14:10,046 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:14:10,052 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:14:10,093 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:10] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:14:10,096 - INFO - Received file: invalid.txt
+2024-11-11 22:14:10,096 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:14:10,096 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:14:10,097 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:10] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:14:10,100 - ERROR - File parameter is missing in request.
+2024-11-11 22:14:10,100 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:10] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:14:10,174 - INFO - 127.0.0.1 - - [11/Nov/2024 22:14:10] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:14:32,747 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:14:32,823 - INFO -  * Restarting with stat
+2024-11-11 22:14:33,217 - WARNING -  * Debugger is active!
+2024-11-11 22:14:33,226 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:14:36,315 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:14:36,389 - INFO -  * Restarting with stat
+2024-11-11 22:14:36,817 - WARNING -  * Debugger is active!
+2024-11-11 22:14:36,823 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:15:25,679 - INFO - Health check requested - Server uptime: 48.88 seconds
+2024-11-11 22:15:25,679 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:25] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:15:25,696 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:15:25,697 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:15:25,697 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:15:25,698 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:25] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:15:25,708 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:15:25,709 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:15:25,714 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:15:25,808 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:25] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:15:25,971 - INFO - Health check requested - Server uptime: 49.17 seconds
+2024-11-11 22:15:25,971 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:25] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:15:26,000 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:15:26,002 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:15:26,018 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:15:26,025 - INFO - Received file: invalid.txt
+2024-11-11 22:15:26,025 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:15:26,026 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:15:26,026 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:26] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:15:26,034 - ERROR - File parameter is missing in request.
+2024-11-11 22:15:26,038 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:26] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:15:26,131 - INFO - 127.0.0.1 - - [11/Nov/2024 22:15:26] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:16:13,044 - INFO - Health check requested - Server uptime: 96.25 seconds
+2024-11-11 22:16:13,044 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:16:13,059 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:16:13,060 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:16:13,061 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:16:13,073 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:16:13,073 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:16:13,079 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:16:13,174 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:16:13,324 - INFO - Health check requested - Server uptime: 96.53 seconds
+2024-11-11 22:16:13,324 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:16:13,342 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:16:13,352 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:16:13,367 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:16:13,392 - INFO - Received file: test.fits
+2024-11-11 22:16:13,393 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:16:13,393 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:16:13,436 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:16:13,441 - INFO - Received file: invalid.txt
+2024-11-11 22:16:13,441 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:16:13,441 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:16:13,441 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:16:13,444 - ERROR - File parameter is missing in request.
+2024-11-11 22:16:13,444 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:16:13,529 - INFO - 127.0.0.1 - - [11/Nov/2024 22:16:13] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:19:21,695 - INFO - Health check requested - Server uptime: 284.90 seconds
+2024-11-11 22:19:21,695 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:21] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:19:21,709 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:19:21,710 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:19:21,710 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:21] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:19:21,721 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:19:21,721 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:19:21,727 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:19:21,816 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:21] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:19:22,029 - INFO - Health check requested - Server uptime: 285.23 seconds
+2024-11-11 22:19:22,029 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:19:22,062 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:19:22,063 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:19:22,071 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:19:22,071 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:19:22,073 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:19:22,073 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-11 22:19:22,075 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:19:22,081 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:19:22,082 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:19:22,092 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:19:22,102 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:19:22,110 - INFO - Received file: test.fits
+2024-11-11 22:19:22,110 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:19:22,112 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:19:22,173 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:19:22,177 - INFO - Received file: invalid.txt
+2024-11-11 22:19:22,177 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:19:22,177 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:19:22,178 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:19:22,181 - ERROR - File parameter is missing in request.
+2024-11-11 22:19:22,181 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:19:22,225 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:22] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:19:31,120 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:19:31,122 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:19:31,129 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:19:31,224 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:31] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:19:34,010 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:19:34,012 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:19:34,019 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:19:34,109 - INFO - 127.0.0.1 - - [11/Nov/2024 22:19:34] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:20:05,258 - INFO - 127.0.0.1 - - [11/Nov/2024 22:20:05] "[33mGET /list_EXTNAMES?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1[0m" 404 -
+2024-11-11 22:20:19,903 - INFO - 127.0.0.1 - - [11/Nov/2024 22:20:19] "[33mGET /LIST_EXTNAMES/?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1[0m" 404 -
+2024-11-11 22:20:37,492 - INFO - 127.0.0.1 - - [11/Nov/2024 22:20:37] "[33mGET /list_extnames/?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1[0m" 404 -
+2024-11-11 22:20:43,588 - INFO - 127.0.0.1 - - [11/Nov/2024 22:20:43] "[33mGET /list_extnames/?file=tests/AIA20130101_0000_0171.fits HTTP/1.1[0m" 404 -
+2024-11-11 22:21:32,190 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:21:32,191 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:21:32,191 - INFO - 127.0.0.1 - - [11/Nov/2024 22:21:32] "GET /list_extnames?file=tests/AIA20130101_0000_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:27:02,546 - INFO - Health check requested - Server uptime: 745.75 seconds
+2024-11-11 22:27:02,548 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:02] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:27:02,664 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:27:02,695 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:02] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1800_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:27:28,232 - INFO - Health check requested - Server uptime: 771.43 seconds
+2024-11-11 22:27:28,233 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:28] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:27:28,383 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:27:28,395 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:28] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130102_0600_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:27:37,895 - INFO - Health check requested - Server uptime: 781.10 seconds
+2024-11-11 22:27:37,895 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:37] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:27:38,055 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:27:38,058 - INFO - 127.0.0.1 - - [11/Nov/2024 22:27:38] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1800_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:29:25,359 - INFO - Health check requested - Server uptime: 888.56 seconds
+2024-11-11 22:29:25,359 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:29:25,377 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:29:25,378 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:29:25,378 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:29:25,392 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:25,392 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:25,397 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:29:25,488 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:29:25,749 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:25,750 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:25,759 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:29:25,765 - INFO - Health check requested - Server uptime: 888.97 seconds
+2024-11-11 22:29:25,768 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:29:25,786 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:29:25,786 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:29:25,786 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:29:25,787 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-11 22:29:25,794 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:29:25,795 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:29:25,795 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:29:25,795 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:29:25,800 - INFO - Received file: test.fits
+2024-11-11 22:29:25,800 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:29:25,800 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:29:25,836 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:29:25,839 - INFO - Received file: invalid.txt
+2024-11-11 22:29:25,839 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:29:25,839 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:29:25,840 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:29:25,843 - ERROR - File parameter is missing in request.
+2024-11-11 22:29:25,843 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:29:25,904 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:25] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:29:30,883 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:30,884 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:30,888 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:29:30,977 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:30] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=RHEF HTTP/1.1" 200 -
+2024-11-11 22:29:38,317 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:38,317 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:38,321 - ERROR - ValueError in /preview_rendered: Error reading FITS file or EXTNAME
+2024-11-11 22:29:38,321 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:38] "[31m[1mGET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=LVL1P5 HTTP/1.1[0m" 400 -
+2024-11-11 22:29:44,941 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:44,941 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:44,944 - ERROR - ValueError in /preview_rendered: Error reading FITS file or EXTNAME
+2024-11-11 22:29:44,944 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:44] "[31m[1mGET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=PRIMARY HTTP/1.1[0m" 400 -
+2024-11-11 22:29:53,917 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:29:53,918 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:29:53,922 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:29:54,010 - INFO - 127.0.0.1 - - [11/Nov/2024 22:29:54] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=RHEF HTTP/1.1" 200 -
+2024-11-11 22:43:06,022 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:43:06,085 - INFO -  * Restarting with stat
+2024-11-11 22:43:16,341 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 22:43:16,341 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 22:43:16,341 - INFO -  * Restarting with stat
+2024-11-11 22:43:16,845 - WARNING -  * Debugger is active!
+2024-11-11 22:43:16,877 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:43:21,514 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:43:21,516 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:43:21,519 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:43:21,522 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:43:21,618 - INFO - 127.0.0.1 - - [11/Nov/2024 22:43:21] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=RHEF HTTP/1.1" 200 -
+2024-11-11 22:43:33,216 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-11 22:43:33,283 - INFO -  * Restarting with stat
+2024-11-11 22:43:33,652 - WARNING -  * Debugger is active!
+2024-11-11 22:43:33,659 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:43:41,546 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:43:41,547 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:43:41,551 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:43:41,554 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:43:41,647 - INFO - 127.0.0.1 - - [11/Nov/2024 22:43:41] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=RHEF HTTP/1.1" 200 -
+2024-11-11 22:44:01,275 - INFO - Health check requested - Server uptime: 27.64 seconds
+2024-11-11 22:44:01,278 - INFO - 127.0.0.1 - - [11/Nov/2024 22:44:01] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:44:01,366 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:44:01,366 - INFO - 127.0.0.1 - - [11/Nov/2024 22:44:01] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1200_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:49:19,413 - INFO - Health check requested - Server uptime: 345.78 seconds
+2024-11-11 22:49:19,414 - INFO - 127.0.0.1 - - [11/Nov/2024 22:49:19] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:49:19,513 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:49:19,514 - INFO - 127.0.0.1 - - [11/Nov/2024 22:49:19] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1200_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:49:32,427 - INFO - Health check requested - Server uptime: 358.79 seconds
+2024-11-11 22:49:32,427 - INFO - 127.0.0.1 - - [11/Nov/2024 22:49:32] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:49:32,556 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:49:32,556 - INFO - 127.0.0.1 - - [11/Nov/2024 22:49:32] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1800_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:51:46,924 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-11 22:51:46,924 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-11 22:51:46,924 - INFO -  * Restarting with stat
+2024-11-11 22:51:47,281 - WARNING -  * Debugger is active!
+2024-11-11 22:51:47,301 - INFO -  * Debugger PIN: 113-473-548
+2024-11-11 22:52:02,904 - INFO - Health check requested - Server uptime: 15.64 seconds
+2024-11-11 22:52:02,904 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:02] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:52:02,921 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-11 22:52:02,922 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:52:02,923 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:52:02,924 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:02] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:52:02,934 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-11 22:52:02,935 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:52:02,941 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:52:03,035 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:52:03,256 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 22:52:03,256 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 22:52:03,266 - INFO - Health check requested - Server uptime: 16.00 seconds
+2024-11-11 22:52:03,266 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:52:03,267 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:52:03,293 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:52:03,294 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:52:03,295 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:52:03,296 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-11 22:52:03,319 - INFO - Found EXTNAME: EXT1
+2024-11-11 22:52:03,319 - INFO - Found EXTNAME: EXT2
+2024-11-11 22:52:03,320 - INFO - Found EXTNAME: EXT3
+2024-11-11 22:52:03,321 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-11 22:52:03,332 - INFO - Received file: test.fits
+2024-11-11 22:52:03,332 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:52:03,333 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-11 22:52:03,377 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:52:03,387 - INFO - Received file: invalid.txt
+2024-11-11 22:52:03,387 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-11 22:52:03,387 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-11 22:52:03,387 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:52:03,390 - ERROR - File parameter is missing in request.
+2024-11-11 22:52:03,391 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-11 22:52:03,426 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:03] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:52:14,200 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:52:14,201 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:52:14,201 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:14] "GET /list_extnames?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 22:52:34,230 - INFO - Health check requested - Server uptime: 46.97 seconds
+2024-11-11 22:52:34,231 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:34] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:52:34,305 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:52:34,305 - INFO - 127.0.0.1 - - [11/Nov/2024 22:52:34] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1800_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:54:32,038 - INFO - Health check requested - Server uptime: 164.77 seconds
+2024-11-11 22:54:32,041 - INFO - 127.0.0.1 - - [11/Nov/2024 22:54:32] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:54:32,168 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:54:32,171 - INFO - 127.0.0.1 - - [11/Nov/2024 22:54:32] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_1800_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:55:11,376 - INFO - Health check requested - Server uptime: 204.11 seconds
+2024-11-11 22:55:11,376 - INFO - 127.0.0.1 - - [11/Nov/2024 22:55:11] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:55:11,507 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:55:11,508 - INFO - 127.0.0.1 - - [11/Nov/2024 22:55:11] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_0600_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:55:42,464 - INFO - Health check requested - Server uptime: 235.20 seconds
+2024-11-11 22:55:42,464 - INFO - 127.0.0.1 - - [11/Nov/2024 22:55:42] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:55:42,594 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:55:42,594 - INFO - 127.0.0.1 - - [11/Nov/2024 22:55:42] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0171/imgs/fits/AIA20130101_0000_0171.fits HTTP/1.1" 200 -
+2024-11-11 22:57:28,176 - INFO - Health check requested - Server uptime: 340.91 seconds
+2024-11-11 22:57:28,176 - INFO - 127.0.0.1 - - [11/Nov/2024 22:57:28] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:57:28,339 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:57:28,340 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:57:28,340 - INFO - 127.0.0.1 - - [11/Nov/2024 22:57:28] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 22:57:56,038 - INFO - Health check requested - Server uptime: 368.77 seconds
+2024-11-11 22:57:56,038 - INFO - 127.0.0.1 - - [11/Nov/2024 22:57:56] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:57:56,044 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:57:56,045 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:57:56,045 - INFO - 127.0.0.1 - - [11/Nov/2024 22:57:56] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 22:57:58,842 - INFO - Received file: AIA20130101_0600_0193.fits
+2024-11-11 22:57:58,843 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:57:58,848 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:57:58,943 - INFO - 127.0.0.1 - - [11/Nov/2024 22:57:58] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:01,228 - INFO - Received file: AIA20130101_0600_0193.fits
+2024-11-11 22:58:01,229 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:01,238 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:01,337 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:01] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:02,667 - INFO - Received file: AIA20130101_0600_0193.fits
+2024-11-11 22:58:02,667 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:02,673 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:02,779 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:02] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:04,458 - INFO - Received file: AIA20130101_0600_0193.fits
+2024-11-11 22:58:04,459 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:04,465 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:04,578 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:04] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:16,691 - INFO - Health check requested - Server uptime: 389.43 seconds
+2024-11-11 22:58:16,691 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:16] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:58:16,699 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:58:16,699 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:58:16,700 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:16] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_0000_0193.fits HTTP/1.1" 200 -
+2024-11-11 22:58:18,288 - INFO - Received file: AIA20130101_0000_0193.fits
+2024-11-11 22:58:18,289 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:18,295 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:18,389 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:18] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:19,415 - INFO - Received file: AIA20130101_0000_0193.fits
+2024-11-11 22:58:19,416 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:19,423 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:19,523 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:19] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:20,332 - INFO - Received file: AIA20130101_0000_0193.fits
+2024-11-11 22:58:20,333 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:20,340 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:20,439 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:20] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:23,964 - INFO - Health check requested - Server uptime: 396.70 seconds
+2024-11-11 22:58:23,964 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:23] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:58:23,974 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:58:23,975 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:58:23,975 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:23] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_1200_0193.fits HTTP/1.1" 200 -
+2024-11-11 22:58:25,378 - INFO - Health check requested - Server uptime: 398.11 seconds
+2024-11-11 22:58:25,378 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:25] "GET /health HTTP/1.1" 200 -
+2024-11-11 22:58:25,388 - INFO - Found EXTNAME: RHEF
+2024-11-11 22:58:25,389 - INFO - Found EXTNAME: FINAL
+2024-11-11 22:58:25,389 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:25] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130102_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 22:58:27,209 - INFO - Received file: AIA20130102_0600_0193.fits
+2024-11-11 22:58:27,210 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:27,217 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:27,312 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:27] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:29,208 - INFO - Received file: AIA20130102_0600_0193.fits
+2024-11-11 22:58:29,209 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:29,214 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:29,307 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:29] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:30,785 - INFO - Received file: AIA20130102_0600_0193.fits
+2024-11-11 22:58:30,786 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:30,791 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:30,886 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:30] "POST /preview HTTP/1.1" 200 -
+2024-11-11 22:58:32,086 - INFO - Received file: AIA20130102_0600_0193.fits
+2024-11-11 22:58:32,086 - INFO - Parsed wavelength: 193 Å - Colormap applied.
+2024-11-11 22:58:32,094 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 22:58:32,195 - INFO - 127.0.0.1 - - [11/Nov/2024 22:58:32] "POST /preview HTTP/1.1" 200 -
+2024-11-11 23:04:08,865 - INFO - Health check requested - Server uptime: 741.60 seconds
+2024-11-11 23:04:08,866 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:08] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:04:08,957 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:04:08,958 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:04:08,958 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:08] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130102_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:04:16,223 - INFO - Health check requested - Server uptime: 748.96 seconds
+2024-11-11 23:04:16,238 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:16] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:04:16,369 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:04:16,370 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:04:16,371 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:16] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130102_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:04:24,767 - INFO - Health check requested - Server uptime: 757.50 seconds
+2024-11-11 23:04:24,767 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:24] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:04:24,979 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:04:24,980 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:04:24,980 - INFO - 127.0.0.1 - - [11/Nov/2024 23:04:24] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130102_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:05:05,986 - INFO - Health check requested - Server uptime: 798.72 seconds
+2024-11-11 23:05:05,987 - INFO - 127.0.0.1 - - [11/Nov/2024 23:05:05] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:05:06,111 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:05:06,113 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:05:06,114 - INFO - 127.0.0.1 - - [11/Nov/2024 23:05:06] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_0600_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:11:54,655 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:11:54,655 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:11:54,656 - INFO - 127.0.0.1 - - [11/Nov/2024 23:11:54] "GET /list_extnames?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 23:25:22,588 - INFO - 127.0.0.1 - - [11/Nov/2024 23:25:22] "[33mGET /preview_render?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1[0m" 404 -
+2024-11-11 23:25:29,252 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-11 23:25:29,253 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-11 23:25:29,261 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-11 23:25:29,350 - INFO - 127.0.0.1 - - [11/Nov/2024 23:25:29] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-11 23:28:13,659 - INFO - Health check requested - Server uptime: 2186.39 seconds
+2024-11-11 23:28:13,660 - INFO - 127.0.0.1 - - [11/Nov/2024 23:28:13] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:28:13,744 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:28:13,745 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:28:13,745 - INFO - 127.0.0.1 - - [11/Nov/2024 23:28:13] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_1200_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:28:21,633 - INFO - Health check requested - Server uptime: 2194.37 seconds
+2024-11-11 23:28:21,636 - INFO - 127.0.0.1 - - [11/Nov/2024 23:28:21] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:28:21,754 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:28:21,760 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:28:21,761 - INFO - 127.0.0.1 - - [11/Nov/2024 23:28:21] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130101_1200_0193.fits HTTP/1.1" 200 -
+2024-11-11 23:34:32,286 - INFO - Health check requested - Server uptime: 2565.02 seconds
+2024-11-11 23:34:32,295 - INFO - 127.0.0.1 - - [11/Nov/2024 23:34:32] "GET /health HTTP/1.1" 200 -
+2024-11-11 23:34:32,412 - INFO - Found EXTNAME: RHEF
+2024-11-11 23:34:32,413 - INFO - Found EXTNAME: FINAL
+2024-11-11 23:34:32,414 - INFO - 127.0.0.1 - - [11/Nov/2024 23:34:32] "GET /list_extnames?file=/Users/cgilbert/vscode/sunback_data/renders/MultiRange/Decade_13_23_most_None_2013_01_01_000000/0193/imgs/fits/AIA20130102_0000_0193.fits HTTP/1.1" 200 -
+2024-11-12 00:26:25,241 - INFO - Health check requested - Server uptime: 5677.98 seconds
+2024-11-12 00:26:25,241 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "GET /health HTTP/1.1" 200 -
+2024-11-12 00:26:25,259 - INFO - Found EXTNAME: RHEF
+2024-11-12 00:26:25,260 - INFO - Found EXTNAME: FINAL
+2024-11-12 00:26:25,260 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 00:26:25,274 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-12 00:26:25,274 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 00:26:25,279 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 00:26:25,362 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "POST /preview HTTP/1.1" 200 -
+2024-11-12 00:26:25,678 - INFO - Health check requested - Server uptime: 5678.41 seconds
+2024-11-12 00:26:25,683 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "GET /health HTTP/1.1" 200 -
+2024-11-12 00:26:25,708 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 00:26:25,710 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 00:26:25,718 - INFO - Found EXTNAME: EXT1
+2024-11-12 00:26:25,718 - INFO - Found EXTNAME: EXT2
+2024-11-12 00:26:25,718 - INFO - Found EXTNAME: EXT3
+2024-11-12 00:26:25,718 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-12 00:26:25,720 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 00:26:25,750 - INFO - Found EXTNAME: EXT1
+2024-11-12 00:26:25,751 - INFO - Found EXTNAME: EXT2
+2024-11-12 00:26:25,752 - INFO - Found EXTNAME: EXT3
+2024-11-12 00:26:25,753 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 00:26:25,795 - INFO - Received file: test.fits
+2024-11-12 00:26:25,796 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 00:26:25,797 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-12 00:26:25,910 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "POST /preview HTTP/1.1" 200 -
+2024-11-12 00:26:25,922 - INFO - Received file: invalid.txt
+2024-11-12 00:26:25,926 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 00:26:25,926 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-12 00:26:25,927 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 00:26:25,930 - ERROR - File parameter is missing in request.
+2024-11-12 00:26:25,930 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 00:26:25,971 - INFO - 127.0.0.1 - - [12/Nov/2024 00:26:25] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 12:38:31,324 - INFO - Health check requested - Server uptime: 49604.06 seconds
+2024-11-12 12:38:31,324 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "GET /health HTTP/1.1" 200 -
+2024-11-12 12:38:31,342 - INFO - Found EXTNAME: RHEF
+2024-11-12 12:38:31,343 - INFO - Found EXTNAME: FINAL
+2024-11-12 12:38:31,344 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 12:38:31,355 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-12 12:38:31,356 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 12:38:31,361 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 12:38:31,449 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "POST /preview HTTP/1.1" 200 -
+2024-11-12 12:38:31,692 - INFO - Health check requested - Server uptime: 49604.43 seconds
+2024-11-12 12:38:31,692 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "GET /health HTTP/1.1" 200 -
+2024-11-12 12:38:31,697 - INFO - Found EXTNAME: EXT1
+2024-11-12 12:38:31,698 - INFO - Found EXTNAME: EXT2
+2024-11-12 12:38:31,698 - INFO - Found EXTNAME: EXT3
+2024-11-12 12:38:31,698 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-12 12:38:31,705 - INFO - Found EXTNAME: EXT1
+2024-11-12 12:38:31,705 - INFO - Found EXTNAME: EXT2
+2024-11-12 12:38:31,706 - INFO - Found EXTNAME: EXT3
+2024-11-12 12:38:31,706 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 12:38:31,710 - INFO - Received file: test.fits
+2024-11-12 12:38:31,710 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 12:38:31,711 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-12 12:38:31,725 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 12:38:31,725 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 12:38:31,737 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 12:38:31,751 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "POST /preview HTTP/1.1" 200 -
+2024-11-12 12:38:31,755 - INFO - Received file: invalid.txt
+2024-11-12 12:38:31,755 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 12:38:31,755 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-12 12:38:31,755 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 12:38:31,757 - ERROR - File parameter is missing in request.
+2024-11-12 12:38:31,758 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 12:38:31,835 - INFO - 127.0.0.1 - - [12/Nov/2024 12:38:31] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 13:53:02,691 - INFO - Health check requested - Server uptime: 54075.43 seconds
+2024-11-12 13:53:02,692 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:02] "GET /health HTTP/1.1" 200 -
+2024-11-12 13:53:02,727 - INFO - Found EXTNAME: RHEF
+2024-11-12 13:53:02,728 - INFO - Found EXTNAME: FINAL
+2024-11-12 13:53:02,728 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:02] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 13:53:02,741 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-12 13:53:02,741 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 13:53:02,746 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 13:53:02,836 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:02] "POST /preview HTTP/1.1" 200 -
+2024-11-12 13:53:03,070 - INFO - Health check requested - Server uptime: 54075.81 seconds
+2024-11-12 13:53:03,071 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "GET /health HTTP/1.1" 200 -
+2024-11-12 13:53:03,095 - INFO - Found EXTNAME: EXT1
+2024-11-12 13:53:03,097 - INFO - Found EXTNAME: EXT2
+2024-11-12 13:53:03,098 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 13:53:03,099 - INFO - Found EXTNAME: EXT3
+2024-11-12 13:53:03,102 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 13:53:03,104 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-12 13:53:03,118 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 13:53:03,140 - INFO - Found EXTNAME: EXT1
+2024-11-12 13:53:03,148 - INFO - Found EXTNAME: EXT2
+2024-11-12 13:53:03,152 - INFO - Found EXTNAME: EXT3
+2024-11-12 13:53:03,152 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 13:53:03,162 - INFO - Received file: test.fits
+2024-11-12 13:53:03,162 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 13:53:03,164 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-12 13:53:03,220 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "POST /preview HTTP/1.1" 200 -
+2024-11-12 13:53:03,223 - INFO - Received file: invalid.txt
+2024-11-12 13:53:03,223 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 13:53:03,223 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-12 13:53:03,223 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 13:53:03,225 - ERROR - File parameter is missing in request.
+2024-11-12 13:53:03,225 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 13:53:03,287 - INFO - 127.0.0.1 - - [12/Nov/2024 13:53:03] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 15:46:21,796 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 15:46:21,796 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 15:46:21,797 - INFO -  * Restarting with stat
+2024-11-12 15:46:22,129 - WARNING -  * Debugger is active!
+2024-11-12 15:46:22,146 - INFO -  * Debugger PIN: 688-647-956
+2024-11-12 15:47:22,327 - INFO - Health check requested - Server uptime: 60.21 seconds
+2024-11-12 15:47:22,327 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "GET /health HTTP/1.1" 200 -
+2024-11-12 15:47:22,376 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-12 15:47:22,377 - INFO - Found EXTNAME: RHEF
+2024-11-12 15:47:22,378 - INFO - Found EXTNAME: FINAL
+2024-11-12 15:47:22,378 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 15:47:22,388 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:22,388 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:22,394 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 15:47:22,499 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "POST /preview HTTP/1.1" 200 -
+2024-11-12 15:47:22,676 - INFO - Health check requested - Server uptime: 60.56 seconds
+2024-11-12 15:47:22,676 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "GET /health HTTP/1.1" 200 -
+2024-11-12 15:47:22,682 - INFO - Found EXTNAME: EXT1
+2024-11-12 15:47:22,682 - INFO - Found EXTNAME: EXT2
+2024-11-12 15:47:22,683 - INFO - Found EXTNAME: EXT3
+2024-11-12 15:47:22,683 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-12 15:47:22,688 - INFO - Found EXTNAME: EXT1
+2024-11-12 15:47:22,689 - INFO - Found EXTNAME: EXT2
+2024-11-12 15:47:22,689 - INFO - Found EXTNAME: EXT3
+2024-11-12 15:47:22,689 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 15:47:22,693 - INFO - Received file: test.fits
+2024-11-12 15:47:22,693 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 15:47:22,694 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-12 15:47:22,716 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "POST /preview HTTP/1.1" 200 -
+2024-11-12 15:47:22,719 - INFO - Received file: invalid.txt
+2024-11-12 15:47:22,719 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 15:47:22,719 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-12 15:47:22,719 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 15:47:22,722 - ERROR - File parameter is missing in request.
+2024-11-12 15:47:22,722 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 15:47:22,760 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:22,761 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:22,772 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 15:47:22,931 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:22] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 15:47:23,178 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-12 15:47:31,329 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:31,330 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:31,342 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 15:47:31,440 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:31] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=RHEF HTTP/1.1" 200 -
+2024-11-12 15:47:35,544 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:35,545 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:35,555 - ERROR - ValueError in /preview_rendered: Error reading FITS file or EXTNAME
+2024-11-12 15:47:35,555 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:35] "[31m[1mGET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=PRIMARY HTTP/1.1[0m" 400 -
+2024-11-12 15:47:40,108 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:40,109 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:40,121 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 15:47:40,217 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:40] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 15:47:42,409 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 15:47:42,410 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 15:47:42,422 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 15:47:42,521 - INFO - 127.0.0.1 - - [12/Nov/2024 15:47:42] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-12 19:04:06,273 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 19:04:06,273 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 19:04:06,274 - INFO -  * Restarting with stat
+2024-11-12 19:04:06,644 - WARNING -  * Debugger is active!
+2024-11-12 19:04:06,666 - INFO -  * Debugger PIN: 282-608-431
+2024-11-12 19:04:30,956 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-12 19:04:30,956 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-12 19:04:30,957 - INFO -  * Restarting with stat
+2024-11-12 19:04:31,349 - WARNING -  * Debugger is active!
+2024-11-12 19:04:31,374 - INFO -  * Debugger PIN: 282-608-431
+2024-11-12 19:04:42,581 - INFO - Health check requested - Server uptime: 11.25 seconds
+2024-11-12 19:04:42,581 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:42] "GET /health HTTP/1.1" 200 -
+2024-11-12 19:04:42,599 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-12 19:04:42,600 - INFO - Found EXTNAME: RHEF
+2024-11-12 19:04:42,601 - INFO - Found EXTNAME: FINAL
+2024-11-12 19:04:42,602 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:42] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 19:04:42,612 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-12 19:04:42,613 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 19:04:42,618 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 19:04:42,865 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:42] "POST /preview HTTP/1.1" 200 -
+2024-11-12 19:04:43,210 - INFO - Health check requested - Server uptime: 11.88 seconds
+2024-11-12 19:04:43,211 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "GET /health HTTP/1.1" 200 -
+2024-11-12 19:04:43,217 - INFO - Found EXTNAME: EXT1
+2024-11-12 19:04:43,218 - INFO - Found EXTNAME: EXT2
+2024-11-12 19:04:43,218 - INFO - Found EXTNAME: EXT3
+2024-11-12 19:04:43,218 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-12 19:04:43,225 - INFO - Found EXTNAME: EXT1
+2024-11-12 19:04:43,225 - INFO - Found EXTNAME: EXT2
+2024-11-12 19:04:43,225 - INFO - Found EXTNAME: EXT3
+2024-11-12 19:04:43,225 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-12 19:04:43,230 - INFO - Received file: test.fits
+2024-11-12 19:04:43,230 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 19:04:43,230 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-12 19:04:43,252 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "POST /preview HTTP/1.1" 200 -
+2024-11-12 19:04:43,258 - INFO - Received file: invalid.txt
+2024-11-12 19:04:43,258 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-12 19:04:43,258 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-12 19:04:43,258 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 19:04:43,270 - ERROR - File parameter is missing in request.
+2024-11-12 19:04:43,271 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-12 19:04:43,272 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-12 19:04:43,274 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-12 19:04:43,296 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-12 19:04:43,463 - INFO - 127.0.0.1 - - [12/Nov/2024 19:04:43] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-13 15:41:57,242 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-13 15:41:57,242 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-13 15:41:57,243 - INFO -  * Restarting with stat
+2024-11-13 15:41:57,598 - WARNING -  * Debugger is active!
+2024-11-13 15:41:57,615 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:45:12,682 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-13 15:45:12,682 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-13 15:45:12,683 - INFO -  * Restarting with stat
+2024-11-13 15:45:13,043 - WARNING -  * Debugger is active!
+2024-11-13 15:45:13,061 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:45:43,454 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-13 15:45:43,454 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-13 15:45:43,455 - INFO -  * Restarting with stat
+2024-11-13 15:45:43,806 - WARNING -  * Debugger is active!
+2024-11-13 15:45:43,811 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:45:53,201 - INFO - Health check requested - Server uptime: 9.41 seconds
+2024-11-13 15:45:53,201 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:45:53,217 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-13 15:45:53,218 - INFO - Found EXTNAME: RHEF
+2024-11-13 15:45:53,219 - INFO - Found EXTNAME: FINAL
+2024-11-13 15:45:53,219 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:45:53,229 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-13 15:45:53,230 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-13 15:45:53,236 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:45:53,341 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:45:53,565 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-13 15:45:53,569 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-13 15:45:53,580 - INFO - Health check requested - Server uptime: 9.79 seconds
+2024-11-13 15:45:53,581 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:45:53,582 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:45:53,599 - INFO - Found EXTNAME: EXT1
+2024-11-13 15:45:53,600 - INFO - Found EXTNAME: EXT2
+2024-11-13 15:45:53,601 - INFO - Found EXTNAME: EXT3
+2024-11-13 15:45:53,602 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-13 15:45:53,609 - INFO - Found EXTNAME: EXT1
+2024-11-13 15:45:53,610 - INFO - Found EXTNAME: EXT2
+2024-11-13 15:45:53,610 - INFO - Found EXTNAME: EXT3
+2024-11-13 15:45:53,611 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:45:53,616 - INFO - Received file: test.fits
+2024-11-13 15:45:53,616 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-13 15:45:53,617 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-13 15:45:53,665 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:45:53,667 - INFO - Received file: invalid.txt
+2024-11-13 15:45:53,667 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-13 15:45:53,668 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-13 15:45:53,668 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:45:53,671 - ERROR - File parameter is missing in request.
+2024-11-13 15:45:53,671 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:45:53,729 - INFO - 127.0.0.1 - - [13/Nov/2024 15:45:53] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-13 15:46:09,267 - INFO - Health check requested - Server uptime: 25.47 seconds
+2024-11-13 15:46:09,267 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:46:09,282 - INFO - Found EXTNAME: RHEF
+2024-11-13 15:46:09,283 - INFO - Found EXTNAME: FINAL
+2024-11-13 15:46:09,283 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:46:09,294 - INFO - Received file: AIA20130101_0000_0171.fits
+2024-11-13 15:46:09,294 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-13 15:46:09,299 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:46:09,388 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:46:09,586 - INFO - Health check requested - Server uptime: 25.79 seconds
+2024-11-13 15:46:09,586 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:46:09,592 - INFO - Found EXTNAME: EXT1
+2024-11-13 15:46:09,592 - INFO - Found EXTNAME: EXT2
+2024-11-13 15:46:09,592 - INFO - Found EXTNAME: EXT3
+2024-11-13 15:46:09,593 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-13 15:46:09,598 - INFO - Found EXTNAME: EXT1
+2024-11-13 15:46:09,599 - INFO - Found EXTNAME: EXT2
+2024-11-13 15:46:09,599 - INFO - Found EXTNAME: EXT3
+2024-11-13 15:46:09,599 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:46:09,604 - INFO - Received file: test.fits
+2024-11-13 15:46:09,604 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-13 15:46:09,605 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-13 15:46:09,624 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:46:09,630 - INFO - Received file: invalid.txt
+2024-11-13 15:46:09,631 - WARNING - Wavelength not found in filename; using default colormap.
+2024-11-13 15:46:09,631 - ERROR - ValueError in /preview: Error reading FITS file or EXTNAME
+2024-11-13 15:46:09,631 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:46:09,634 - ERROR - File parameter is missing in request.
+2024-11-13 15:46:09,634 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:46:09,643 - INFO - Processing file: AIA20130101_0000_0171.fits
+2024-11-13 15:46:09,644 - INFO - Parsed wavelength: 171 Å - Colormap applied.
+2024-11-13 15:46:09,701 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:46:09,791 - INFO - 127.0.0.1 - - [13/Nov/2024 15:46:09] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-13 15:46:55,550 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-13 15:46:55,615 - INFO -  * Restarting with stat
+2024-11-13 15:46:55,981 - WARNING -  * Debugger is active!
+2024-11-13 15:46:55,998 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:46:57,054 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-13 15:46:57,112 - INFO -  * Restarting with stat
+2024-11-13 15:46:57,490 - WARNING -  * Debugger is active!
+2024-11-13 15:46:57,495 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:47:01,616 - INFO -  * Detected change in '/Users/cgilbert/pyFitsServer/fits_preview_server/server.py', reloading
+2024-11-13 15:47:01,681 - INFO -  * Restarting with stat
+2024-11-13 15:47:02,037 - WARNING -  * Debugger is active!
+2024-11-13 15:47:02,042 - INFO -  * Debugger PIN: 133-591-608
+2024-11-13 15:47:05,028 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:05,062 - WARNING - VerifyWarning: Invalid 'BLANK' keyword in header.  The 'BLANK' keyword is only applicable to integer data, and will be ignored in this HDU.
+2024-11-13 15:47:05,064 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:05,080 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:47:05,177 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:05,317 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:05,328 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-13 15:47:05,336 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:05,337 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:47:05,342 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-13 15:47:05,381 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:05,384 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:47:05,387 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:47:05,441 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:05] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-13 15:47:27,460 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:27,474 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:27,490 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:47:27,577 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:27,734 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:27,740 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-13 15:47:27,747 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:27,752 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-13 15:47:27,772 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:27,776 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:47:27,779 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:47:27,818 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:47:27,913 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:27] "GET /preview_rendered?file=tests/AIA20130101_0000_0171.fits&extname=FINAL HTTP/1.1" 200 -
+2024-11-13 15:47:43,365 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:43,381 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:43,395 - INFO - Image shape: (1024, 1024), dtype: >f4, min: 0.00021834061772096902, max: 1.0
+2024-11-13 15:47:43,483 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:43,492 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "GET /health HTTP/1.1" 200 -
+2024-11-13 15:47:43,499 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "GET /list_extnames?file=test_file.fits HTTP/1.1" 200 -
+2024-11-13 15:47:43,505 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "POST /list_extnames HTTP/1.1" 200 -
+2024-11-13 15:47:43,510 - INFO - Image shape: (2, 2), dtype: >i8, min: 1, max: 4
+2024-11-13 15:47:43,527 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "POST /preview HTTP/1.1" 200 -
+2024-11-13 15:47:43,530 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
+2024-11-13 15:47:43,532 - INFO - 127.0.0.1 - - [13/Nov/2024 15:47:43] "[31m[1mPOST /preview HTTP/1.1[0m" 400 -
