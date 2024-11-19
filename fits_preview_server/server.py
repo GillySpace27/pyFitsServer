@@ -14,6 +14,7 @@ import base64
 import re
 import astropy.units as u
 from color_tables import aia_color_table
+from warnings import warn
 
 mpl_use('Agg')  # Non-interactive backend for Matplotlib
 
@@ -22,7 +23,7 @@ app = Flask(__name__)
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(levelname)s - \n\t\t\t%(message)s\n',
     handlers=[
         logging.FileHandler("server.log"),
         logging.StreamHandler()
@@ -38,10 +39,12 @@ def process_fits_hdu(hdu):
     im = hdu.data
     if im is None:
         raise ValueError("HDU data is None")
-    if np.sum(np.isnan(im)) / im.size > 0.8:
-        raise ValueError("HDU data contains more than 80% NaNs")
-
-    logger.info(f"Image shape: {im.shape}, dtype: {im.dtype}, min: {np.nanmin(im)}, max: {np.nanmax(im)}")
+    try:
+        if np.sum(np.isnan(im)) / np.sum(np.isfinite(im)) > 1.0:
+            raise ValueError("HDU data contains more than 50% NaNs")
+    except Exception as e:
+        raise ValueError(f"Failed to load HDU: {e}")
+    # logger.info(f"Image shape: {im.shape}, dtype: {im.dtype}, min: {np.nanmin(im)}, max: {np.nanmax(im)}")
     im_normalized = (im - np.nanmin(im)) / (np.nanmax(im) - np.nanmin(im) + 1e-5)  # Avoid division by zero
     return np.log10(im_normalized + 1)  # +1 to avoid log(0)
 
@@ -58,22 +61,45 @@ def generate_image_base64(data, cmap="viridis"):
 
     return base64.b64encode(img_buffer.getvalue()).decode('utf-8')
 
-def get_fits_hdu_and_cmap(file, extname):
-    """Retrieve the HDU with the specified EXTNAME and determine the colormap."""
-    try:
-        match = re.search(r"_(\d{3,4})\.fits", file.filename)
-        wave = int(match.group(1)) if match else None
-        cmap = aia_color_table(wave * u.angstrom) if wave else "plasma"
+def get_fits_hdu_and_cmap(file, extname="compressed"):
+    # Match the wavelength in the filename
+    match = re.search(r"_(\d{3,4})\.fits", file.filename)
+    wave = int(match.group(1)) if match else None
+    cmap = aia_color_table(wave * u.angstrom) if wave else "plasma"
 
-        file.seek(0)
-        with fits.open(io.BytesIO(file.read())) as hdul:
-            hdu = next((h for h in hdul if h.header.get('EXTNAME') == extname), None)
-            if hdu is None or hdu.data is None:
-                raise ValueError("Selected EXTNAME not found or has no data.")
-    except Exception:
-        raise ValueError("Error reading FITS file or EXTNAME")
+    file.seek(0)
+    extnames = []
 
-    return hdu, cmap, wave
+    with fits.open(io.BytesIO(file.read())) as hdul:
+        for hdu in hdul:
+            extname_header = hdu.header.get('EXTNAME')
+            if extname_header:
+                extnames.append(extname_header)
+            if extname_header == extname:
+                if hdu.data is not None:
+                    return hdu.data, cmap, wave, extnames
+                else:
+                    raise ValueError(f"Selected EXTNAME '{extname}' has no data.")
+
+        if is_int(extname[-1]):
+            hdu = hdul[extnames[int(extname)]]
+            if hdu and hdu.data is not None:
+                return hdu.data, cmap, wave, extnames
+            else:
+                raise ValueError("The last HDU has no data.")
+
+        raise ValueError(f"Selected EXTNAME '{extname}' not found. Names in file: {extnames}")
+
+def is_int(variable):
+    # Check if the variable is an integer
+    if isinstance(variable, int):
+        return True
+    # Check if the variable is a string that represents an integer
+    elif isinstance(variable, str) and variable.isdigit():
+        return True
+    else:
+        return False
+
 
 def validate_file_and_extname(file, extname):
     """Validate the presence and type of the file and extname."""
@@ -93,7 +119,11 @@ def preview():
         extname = request.form.get('extname')
         validate_file_and_extname(file, extname)
 
-        hdu, cmap, wave = get_fits_hdu_and_cmap(file, extname)
+        try:
+            hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
+        except FileNotFoundError:
+            hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, -1)
+
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
 
@@ -120,18 +150,22 @@ def preview_rendered():
                 file.filename = os.path.basename(file_path)
 
         validate_file_and_extname(file, extname)
-        hdu, cmap, wave = get_fits_hdu_and_cmap(file, extname)
+        hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
+
+        # if is_int(extname):
+        #     extname = extnames[extname]
+
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
-
         html_content = f"""
         <html>
         <head>
             <title>FITS Preview</title>
         </head>
         <body>
-            <h1>FITS Image Preview: Wavelength {wave if wave else 'N/A'}</h1>
             <img src="data:image/png;base64,{image_base64}" alt="FITS Image">
+            <h2>Frame: {extname if extname else 'N/A'}, Shape: {im_normalized.shape}</h2>
+            <h3>List: {[nme for nme in extnames]} </h3>
         </body>
         </html>
         """
