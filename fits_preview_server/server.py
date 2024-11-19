@@ -14,7 +14,6 @@ import base64
 import re
 import astropy.units as u
 from color_tables import aia_color_table
-from warnings import warn
 
 mpl_use('Agg')  # Non-interactive backend for Matplotlib
 
@@ -31,7 +30,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Start time to track uptime
 start_time = time()
 
 def process_fits_hdu(hdu):
@@ -39,66 +37,45 @@ def process_fits_hdu(hdu):
     im = hdu.data
     if im is None:
         raise ValueError("HDU data is None")
-    try:
-        if np.sum(np.isnan(im)) / np.sum(np.isfinite(im)) > 1.0:
-            raise ValueError("HDU data contains more than 50% NaNs")
-    except Exception as e:
-        raise ValueError(f"Failed to load HDU: {e}")
-    # logger.info(f"Image shape: {im.shape}, dtype: {im.dtype}, min: {np.nanmin(im)}, max: {np.nanmax(im)}")
-    im_normalized = (im - np.nanmin(im)) / (np.nanmax(im) - np.nanmin(im) + 1e-5)  # Avoid division by zero
-    return np.log10(im_normalized + 1)  # +1 to avoid log(0)
+    if np.isnan(im).sum() / np.isfinite(im).sum() > 1.0:
+        raise ValueError("HDU data contains more than 50% NaNs")
+    im_normalized = (im - np.nanmin(im)) / (np.nanmax(im) - np.nanmin(im) + 1e-5)
+    return np.log10(im_normalized + 1)
 
 def generate_image_base64(data, cmap="viridis"):
     """Generate a base64-encoded PNG image from the normalized FITS data with the specified color map."""
     fig, ax = plt.subplots()
     ax.imshow(data, origin="lower", cmap=cmap)
     ax.axis('off')
-
     img_buffer = io.BytesIO()
     fig.savefig(img_buffer, format='png', bbox_inches='tight', pad_inches=0)
     plt.close(fig)
     img_buffer.seek(0)
-
     return base64.b64encode(img_buffer.getvalue()).decode('utf-8')
 
 def get_fits_hdu_and_cmap(file, extname="compressed"):
-    # Match the wavelength in the filename
     match = re.search(r"_(\d{3,4})\.fits", file.filename)
     wave = int(match.group(1)) if match else None
     cmap = aia_color_table(wave * u.angstrom) if wave else "plasma"
-
     file.seek(0)
-    extnames = []
 
     with fits.open(io.BytesIO(file.read())) as hdul:
-        for hdu in hdul:
-            extname_header = hdu.header.get('EXTNAME')
-            if extname_header:
-                extnames.append(extname_header)
-            if extname_header == extname:
+        extnames = [h.header.get('EXTNAME') for h in hdul if h.header.get('EXTNAME')]
+
+        try:
+            if extname.isdigit() or (extname.startswith('-') and extname[1:].isdigit()):
+                index = int(extname)
+                hdu = hdul[index]
                 if hdu.data is not None:
-                    return hdu.data, cmap, wave, extnames
-                else:
-                    raise ValueError(f"Selected EXTNAME '{extname}' has no data.")
-
-        if is_int(extname[-1]):
-            hdu = hdul[extnames[int(extname)]]
-            if hdu and hdu.data is not None:
-                return hdu.data, cmap, wave, extnames
+                    return hdu, cmap, wave, extnames
             else:
-                raise ValueError("The last HDU has no data.")
+                for hdu in hdul:
+                    if hdu.header.get('EXTNAME') == extname and hdu.data is not None:
+                        return hdu, cmap, wave, extnames
+        except IndexError:
+            raise ValueError(f"Index {extname} is out of range for the HDU list. Available extnames: {extnames}")
 
-        raise ValueError(f"Selected EXTNAME '{extname}' not found. Names in file: {extnames}")
-
-def is_int(variable):
-    # Check if the variable is an integer
-    if isinstance(variable, int):
-        return True
-    # Check if the variable is a string that represents an integer
-    elif isinstance(variable, str) and variable.isdigit():
-        return True
-    else:
-        return False
+        raise ValueError(f"Selected EXTNAME '{extname}' not found or has no data. Available extnames: {extnames}")
 
 
 def validate_file_and_extname(file, extname):
@@ -113,29 +90,22 @@ def handle_error(e):
     return jsonify({"error": str(e)}), 500
 
 @app.route('/preview', methods=['POST'])
-def preview():
+async def preview():
     try:
         file = request.files.get('file')
         extname = request.form.get('extname')
         validate_file_and_extname(file, extname)
-
-        try:
-            hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
-        except FileNotFoundError:
-            hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, -1)
-
+        hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
-
         return jsonify({"status": "Preview generated", "image_base64": image_base64}), 200
-
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return handle_error(e)
 
 @app.route('/preview_rendered', methods=['POST', 'GET'])
-def preview_rendered():
+async def preview_rendered():
     try:
         if request.method == 'POST':
             file = request.files.get('file')
@@ -148,42 +118,83 @@ def preview_rendered():
             with open(file_path, 'rb') as f:
                 file = io.BytesIO(f.read())
                 file.filename = os.path.basename(file_path)
-
         validate_file_and_extname(file, extname)
         hdu, cmap, wave, extnames = get_fits_hdu_and_cmap(file, extname)
-
-        # if is_int(extname):
-        #     extname = extnames[extname]
-
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
         html_content = f"""
         <html>
         <head>
             <title>FITS Preview</title>
+            <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@9.4.0/dist/panzoom.min.js"></script>
+            <style>
+                body {{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    height: 100%;
+                    background-color: #909090;
+                    font-family: Arial, sans-serif;
+                }}
+                #img-container {{
+                    border: 1px solid black;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                }}
+                img {{
+                    max-width: 100%;
+                    height: auto;
+                    cursor: grab;
+                }}
+                img:active {{
+                    cursor: grabbing;
+                }}
+            </style>
         </head>
         <body>
-            <img src="data:image/png;base64,{image_base64}" alt="FITS Image">
+            <div id="img-container">
+                <img id="panzoom-img" src="data:image/png;base64,{image_base64}" alt="FITS Image">
+            </div>
             <h2>Frame: {extname if extname else 'N/A'}, Shape: {im_normalized.shape}</h2>
             <h3>List: {[nme for nme in extnames]} </h3>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {{
+                    const element = document.getElementById('panzoom-img');
+                    if (element) {{
+                        Panzoom(element, {{
+                            maxScale: 5,
+                            contain: 'inside',
+                            startScale: 1,
+                        }});
+                    }}
+                }});
+            </script>
         </body>
         </html>
         """
-        return html_content, 200
 
+        return html_content, 200
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return handle_error(e)
 
 @app.route('/health', methods=['GET'])
-def health_check():
+async def health_check():
     """Health check endpoint to verify server status."""
     uptime = time() - start_time
     return jsonify({"status": f"Server is running, uptime {uptime:.2f} seconds"}), 200
 
 @app.route('/list_extnames', methods=['POST', 'GET'])
-def list_extnames():
+async def list_extnames():
     try:
         if request.method == 'POST':
             file = request.files.get('file')
@@ -194,14 +205,10 @@ def list_extnames():
                 raise ValueError("File parameter is missing")
             with open(file_path, 'rb') as f:
                 file_data = io.BytesIO(f.read())
-
-        extnames = []
         file_data.seek(0)
         with fits.open(file_data) as hdul:
             extnames = [h.header.get('EXTNAME') for h in hdul if h.header.get('EXTNAME')]
-
         return jsonify({"extnames": extnames}), 200
-
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     except Exception as e:
