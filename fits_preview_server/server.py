@@ -1,5 +1,3 @@
-# fits_preview_server/server.py
-
 from flask import Flask, request, jsonify
 import numpy as np
 from astropy.io import fits
@@ -60,7 +58,7 @@ def get_fits_hdu_and_cmap(file, extname="compressed"):
     file.seek(0)
 
     with fits.open(io.BytesIO(file.read())) as hdul:
-        extnames = [h.header.get('EXTNAME') for h in hdul if h.header.get('EXTNAME')]
+        extnames = [h.header.get('EXTNAME', "PRIMARY") for h in hdul if h.data is not None]
 
         try:
             if extname.isdigit() or (extname.startswith('-') and extname[1:].isdigit()):
@@ -77,7 +75,6 @@ def get_fits_hdu_and_cmap(file, extname="compressed"):
 
         raise ValueError(f"Selected EXTNAME '{extname}' not found or has no data. Available extnames: {extnames}")
 
-
 def validate_file_and_extname(file, extname):
     """Validate the presence and type of the file and extname."""
     if not (file and extname and file.filename.endswith('.fits')):
@@ -88,6 +85,11 @@ def handle_error(e):
     logger.error(f"Error: {str(e)}")
     logger.error(traceback.format_exc())
     return jsonify({"error": str(e)}), 500
+
+# Load the static parts from the template
+def load_template(template_path):
+    with open(template_path, 'r') as file:
+        return file.read()
 
 @app.route('/preview', methods=['POST'])
 async def preview():
@@ -122,60 +124,22 @@ async def preview_rendered():
         hdu, cmap, wave, extnames, framename = get_fits_hdu_and_cmap(file, extname)
         im_normalized = process_fits_hdu(hdu)
         image_base64 = generate_image_base64(im_normalized, cmap)
-        html_content = f"""
-<html>
-<head>
-    <title>FITS Preview</title>
-    <style>
-        body {{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            height: 100vh;
-            background-color: #909090;
-            font-family: Arial, sans-serif;
-        }}
 
-        #img-container {{
-            border: 1px solid black;
-            overflow: hidden;
-            width: 95%;
-            height: 95%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            # object-fit: contain;
-        }}
+        # Load the static template from an HTML file
+        template_content = load_template("fits_preview_server/template.html")
 
-        img {{
-            # max-width: 100%;
-            max-height: 100%;
-            height: auto;
-            width: 100%;
-            object-fit: contain;
-            image-rendering: pixelated; /* Ensures discrete square pixels */
-        }}
+        # Generate the dynamic body content
+        body_content = f"""
+        <body>
+            <img id="image" src="data:image/png;base64,{image_base64}" alt="FITS Image">
+            <h2>Frame: {framename}, Shape: {im_normalized.shape}</h2>
+            <h3>List: {[nme for nme in extnames]}</h3>
+        </body>
+        </html>
+        """
 
-        img:active {{
-            # cursor: zoom-in;
-        }}
-    </style>
-</head>
-<body>
-    <div id="img-container">
-        <img id="image" src="data:image/png;base64,{image_base64}" alt="FITS Image">
-    </div>
-    <h2>Frame: {framename}, Shape: {im_normalized.shape}</h2>
-    <h3>List: {[nme for nme in extnames]}</h3>
-</body>
-</html>
-"""
-
-
-
+        # Combine static template with dynamic content
+        html_content = template_content + body_content
 
         return html_content, 200
     except ValueError as e:
