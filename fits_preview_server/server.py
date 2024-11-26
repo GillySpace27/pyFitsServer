@@ -9,7 +9,6 @@ import logging
 import traceback
 from time import time
 import base64
-import re
 import astropy.units as u
 from color_tables import aia_color_table, aia_wave_dict
 
@@ -17,7 +16,7 @@ aia_channels = [str(int(key.value)) for key in aia_wave_dict.keys()]
 
 mpl_use('Agg')  # Non-interactive backend for Matplotlib
 
-app = Flask(__name__)
+app = Flask("pyFitsServer")
 
 # Configure logging
 logging.basicConfig(
@@ -149,7 +148,10 @@ async def preview_rendered():
         image_base64 = generate_image_base64(im_normalized, cmap)
 
         # Load the static template from an HTML file
-        template_content = load_template("fits_preview_server/template.html")
+        try:
+            template_content = load_template("fits_preview_server/template.html")
+        except:
+            template_content = load_template("template.html")
 
         # Generate the dynamic body content
         body_content = f"""

@@ -15,7 +15,8 @@ setup(
         "matplotlib",
         "parse",
         "Pillow",
-        "requests"
+        "requests",
+        "scipy"
     ],
     entry_points={
         'console_scripts': [
