@@ -27,7 +27,7 @@ cmap_data_dir = os.path.join(
     pathlib.Path(__file__).parent.absolute(), "../../data", "idl_3.csv"
 )
 if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = "/Users/cgilbert/vscode/sunback/data/idl_3.csv"
+    cmap_data_dir = "fits_preview_server/idl_3.csv"
 assert os.path.exists(cmap_data_dir), f"Could not find cmap_data_dir: {cmap_data_dir}"
 
 # The following values describe color table 3 for IDL (Red Temperature)

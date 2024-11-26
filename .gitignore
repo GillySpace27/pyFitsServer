@@ -6,3 +6,6 @@ node_modules/*
 make_preview.sh
 pyFitsServer.code-workspace
 server.log
+pyfitsserver.egg-info/
+dist/
+*.log
