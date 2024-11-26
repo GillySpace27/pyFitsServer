@@ -11,7 +11,9 @@ from time import time
 import base64
 import re
 import astropy.units as u
-from color_tables import aia_color_table
+from color_tables import aia_color_table, aia_wave_dict
+
+aia_channels = [str(int(key.value)) for key in aia_wave_dict.keys()]
 
 mpl_use('Agg')  # Non-interactive backend for Matplotlib
 
@@ -30,20 +32,36 @@ logger = logging.getLogger(__name__)
 
 start_time = time()
 
+the_norm = "rankdata"
+
 def process_fits_hdu(hdu):
     """Process and normalize the FITS HDU data."""
-    im = hdu.data
+    im = np.astype(hdu.data, np.float32)
     if im is None:
         raise ValueError("HDU data is None")
     if np.isnan(im).sum() / np.isfinite(im).sum() > 1.0:
         raise ValueError("HDU data contains more than 50% NaNs")
-    im_normalized = (im - np.nanmin(im)) / (np.nanmax(im) - np.nanmin(im) + 1e-5)
-    return np.log10(im_normalized + 1)
+    the_mean = np.nanmean(im)
+    the_std = np.nanstd(im)
+    im -= the_mean
+    im /= 0.25 * the_std
+    the_min, the_max = 1.05 * np.nanmin(im), np.nanmax(im)
+    im_normalized = (im - the_min) / (the_max-the_min + 1e-5)
+    return np.log10(im_normalized + 1e-5)
 
 def generate_image_base64(data, cmap="viridis"):
     """Generate a base64-encoded PNG image from the normalized FITS data with the specified color map."""
     fig, ax = plt.subplots()
-    ax.imshow(data, origin="lower", cmap=cmap)
+    data = np.squeeze(data)
+    from scipy.stats import rankdata
+
+    shp = data.shape
+    data = rankdata(data.flatten())/len(data.flatten())
+    data = data.reshape(*shp)
+    print(data.shape)
+    mean, std = np.nanmean(data), np.nanstd(data)
+
+    ax.imshow(data, origin="lower", cmap=cmap, vmin=0, vmax=1) # , vmin=mean-2*std, vmax=mean+2*std)
     ax.axis('off')
     img_buffer = io.BytesIO()
     fig.savefig(img_buffer, format='png', bbox_inches='tight', pad_inches=0)
@@ -51,14 +69,19 @@ def generate_image_base64(data, cmap="viridis"):
     img_buffer.seek(0)
     return base64.b64encode(img_buffer.getvalue()).decode('utf-8')
 
+def get_wavelength(file, hdul):
+    wave = [int(wv) for wv in aia_channels if wv in file.filename]
+    cmap = aia_color_table(wave[0] * u.angstrom) if wave else "gray"
+    return wave, cmap
+
+
 def get_fits_hdu_and_cmap(file, extname="compressed"):
-    match = re.search(r"_(\d{3,4})\.fits", file.filename)
-    wave = int(match.group(1)) if match else None
-    cmap = aia_color_table(wave * u.angstrom) if wave else "plasma"
+
     file.seek(0)
 
     with fits.open(io.BytesIO(file.read())) as hdul:
         extnames = [h.header.get('EXTNAME', "PRIMARY") for h in hdul if h.data is not None]
+        wave, cmap = get_wavelength(file, hdul)
 
         try:
             if extname.isdigit() or (extname.startswith('-') and extname[1:].isdigit()):
@@ -132,8 +155,8 @@ async def preview_rendered():
         body_content = f"""
         <body>
             <img id="image" src="data:image/png;base64,{image_base64}" alt="FITS Image">
-            <h2>Frame: {framename}, Shape: {im_normalized.shape}</h2>
-            <h3>List: {[nme for nme in extnames]}</h3>
+            <h2>Frame: {framename}, Shape: {im_normalized.shape}, Norm: {the_norm}</h2>
+            <h3>HDUList: {[nme for nme in extnames]}</h3>
         </body>
         </html>
         """

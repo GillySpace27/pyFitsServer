@@ -3,3 +3,6 @@ extension/node_modules/*
 node_modules/*
 .vscode/*
 .vscode-test
+make_preview.sh
+pyFitsServer.code-workspace
+server.log
