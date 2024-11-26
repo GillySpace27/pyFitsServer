@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyfitsserver',
-    version='v0.0.1-alpha',
+    version='v0.0.2-alpha',
     description='A lightweight server to facilitate the rendering and previewing of FITS files.',
     author='Gilly',
     author_email='gilly@swri.org',
