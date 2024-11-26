@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   release-build:
-    runs-on: macos-latest  # Use macOS for testing as per your requirement
+    runs-on: ubuntu-latest  # Use Ubuntu for a robust CI environment
 
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,8 @@ jobs:
           path: dist/
 
   testpypi-publish:
-    runs-on: macos-latest  # Use macOS for testing as per your requirement
+    runs-on: ubuntu-latest  # Use Ubuntu for consistency
+
     needs:
       - release-build
     permissions:
@@ -61,7 +62,8 @@ jobs:
           repository-url: https://test.pypi.org/legacy/
 
   realpypi-publish:
-    runs-on: macos-latest  # Use macOS for consistency with testing as per your requirement
+    runs-on: ubuntu-latest  # Use Ubuntu for consistency
+
     needs:
       - release-build
 
