@@ -36,7 +36,7 @@ the_norm = "rankdata"
 
 def process_fits_hdu(hdu):
     """Process and normalize the FITS HDU data."""
-    im = np.astype(hdu.data, np.float32)
+    im = hdu.data.astype(np.float32)
     if im is None:
         raise ValueError("HDU data is None")
     if np.isnan(im).sum() / np.isfinite(im).sum() > 1.0:
@@ -56,7 +56,7 @@ def generate_image_base64(data, cmap="viridis"):
     from scipy.stats import rankdata
 
     shp = data.shape
-    data = rankdata(data.flatten())/len(data.flatten())
+    data = rankdata(data.flatten()) / len(data.flatten())
     data = data.reshape(*shp)
     print(data.shape)
     mean, std = np.nanmean(data), np.nanstd(data)
@@ -197,5 +197,9 @@ async def list_extnames():
     except Exception as e:
         return handle_error(e)
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for starting the server."""
     app.run(host='127.0.0.1', port=5000, debug=True)
+
+if __name__ == "__main__":
+    main()
