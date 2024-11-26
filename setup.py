@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyfitsserver',
-    version='0.1.0',
+    version='v0.0.1-alpha',
     description='A lightweight server to facilitate the rendering and previewing of FITS files.',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='Gilly',
+    author_email='gilly@swri.org',
     url='https://github.com/GillySpace27/pyFitsServer',
     packages=find_packages(),
     install_requires=[
