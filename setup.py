@@ -14,7 +14,7 @@ setup(
         "Flask>=2.0,<3.0",
         "numpy",
         "astropy",
-        "matplotlib>",
+        "matplotlib",
         "parse",
         "Pillow",
         "requests",
