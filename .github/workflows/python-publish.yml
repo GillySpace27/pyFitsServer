@@ -40,6 +40,9 @@ jobs:
 
     needs:
       - release-build
+
+    if: false
+    
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
 
