@@ -3,6 +3,8 @@ include README.md
 include LICENSE
 include requirements.txt
 include setup.py
+include pyfitsserver/idl_3.csv
+include pyfitsserver/color_tables.py
 
 # Recursively include everything under the package directories
 recursive-include pyfitsserver *
