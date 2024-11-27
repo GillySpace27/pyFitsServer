@@ -2,22 +2,23 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyfitsserver',
-    version='v0.0.2-alpha',
+    version='v0.0.3-alpha',
     description='A lightweight server to facilitate the rendering and previewing of FITS files.',
+    long_description=open("README.md").read(),  # Reads the content of your README.md
+    long_description_content_type="text/markdown",  # Specifies that README is in Markdown format
     author='Gilly',
     author_email='gilly@swri.org',
     url='https://github.com/GillySpace27/pyFitsServer',
-    readme="README.md",
     packages=find_packages(),
     install_requires=[
-        "Flask",
-        "numpy",
-        "astropy",
-        "matplotlib",
-        "parse",
-        "Pillow",
-        "requests",
-        "scipy",
+        "Flask>=2.0,<3.0",
+        "numpy>=1.21,<2.0",
+        "astropy>=5.0",
+        "matplotlib>=3.5",
+        "parse>=1.19,<2.0",
+        "Pillow>=8.3",
+        "requests>=2.25",
+        "Werkzeug==2.2.2",  # Explicitly pinned version
     ],
     entry_points={
         'console_scripts': [
