@@ -25,7 +25,7 @@ class FitsPreviewServerTest(unittest.TestCase):
         logging.info("Starting server...")
         try:
             cls.server_process = subprocess.Popen(
-                ['python', 'fits_preview_server/server.py'],
+                ['python', 'pyfitsserver/server.py'],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )

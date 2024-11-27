@@ -12,7 +12,7 @@ else
 fi
 
 # Set the Flask app environment variable to an absolute path
-export FLASK_APP="$(dirname "$0")/fits_preview_server.py"
+export FLASK_APP="$(dirname "$0")/pyfitsserver/server.py"
 
 # Run the Flask server
 flask run --host=127.0.0.1 --port=5000
