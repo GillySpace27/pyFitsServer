@@ -22,7 +22,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pyfitsserver=fits_preview_server.server:main',
+            'pyfitsserver=pyfitsserver.server:main',
         ],
     },
     include_package_data=True,
