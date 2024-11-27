@@ -11,6 +11,8 @@ import numpy as np
 import os.path
 
 import astropy.units as u
+from importlib.resources import files
+import os
 
 __all__ = [
     "aia_color_table",
@@ -23,6 +25,14 @@ __all__ = [
     "hmi_mag_color_table",
     "suvi_color_table",
 ]
+
+def get_cmap_data_dir():
+    cmap_data_file = files("pyfitsserver").joinpath("idl_3.csv")
+    if not os.path.exists(cmap_data_file):
+        raise FileNotFoundError(f"Could not find cmap_data_dir: {cmap_data_file}")
+    return cmap_data_file
+
+
 cmap_data_dir = os.path.join(
     pathlib.Path(__file__).parent.absolute(), "../../data", "idl_3.csv"
 )
@@ -32,6 +42,8 @@ if not os.path.exists(cmap_data_dir):
     cmap_data_dir = "pyfitsserver/idl_3.csv"
 if not os.path.exists(cmap_data_dir):
     cmap_data_dir = "pyFitsServer/pyfitsserver/idl_3.csv"
+if not os.path.exists(cmap_data_dir):
+    cmap_data_dir = get_cmap_data_dir()
 
 assert os.path.exists(cmap_data_dir), f"Could not find cmap_data_dir: {cmap_data_dir}"
 
