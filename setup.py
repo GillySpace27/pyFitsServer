@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyfitsserver',
-    version='v0.0.14',
+    version='v0.0.15',
     description='A lightweight server to facilitate the rendering and previewing of FITS files.',
     long_description=open("README.md").read(),  # Reads the content of your README.md
     long_description_content_type="text/markdown",  # Specifies that README is in Markdown format
