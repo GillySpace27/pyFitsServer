@@ -33,17 +33,7 @@ def get_cmap_data_dir():
     return cmap_data_file
 
 
-cmap_data_dir = os.path.join(
-    pathlib.Path(__file__).parent.absolute(), "../../data", "idl_3.csv"
-)
-if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = "./idl_3.csv"
-if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = "pyfitsserver/idl_3.csv"
-if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = "pyFitsServer/pyfitsserver/idl_3.csv"
-if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = get_cmap_data_dir()
+cmap_data_dir = get_cmap_data_dir()
 
 assert os.path.exists(cmap_data_dir), f"Could not find cmap_data_dir: {cmap_data_dir}"
 

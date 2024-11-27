@@ -10,6 +10,8 @@ import traceback
 from time import time
 import base64
 import astropy.units as u
+import importlib.resources as pkg_resources
+
 try:
     from color_tables import aia_color_table, aia_wave_dict
 except ModuleNotFoundError:
@@ -112,9 +114,9 @@ def handle_error(e):
     return jsonify({"error": str(e)}), 500
 
 # Load the static parts from the template
-def load_template(template_path):
-    with open(template_path, 'r') as file:
-        return file.read()
+# def load_template(template_path):
+#     with open(template_path, 'r') as file:
+#         return file.read()
 
 @app.route('/preview', methods=['POST'])
 async def preview():
@@ -130,6 +132,19 @@ async def preview():
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return handle_error(e)
+
+
+def load_template(template_name="template.html"):
+    # Uses importlib.resources to locate the template within the package
+    try:
+        template_content = pkg_resources.read_text('pyfitsserver', template_name)
+    except FileNotFoundError:
+        # Fallback to the root package location if not found in the specified sub-package
+        template_content = pkg_resources.read_text(__package__, template_name)
+    except Exception as e:
+        raise RuntimeError(f"Could not load template {template_name}: {e}")
+    return template_content
+
 
 @app.route('/preview_rendered', methods=['POST', 'GET'])
 async def preview_rendered():
@@ -152,9 +167,10 @@ async def preview_rendered():
 
         # Load the static template from an HTML file
         try:
-            template_content = load_template("pyfitsserver/template.html")
-        except:
             template_content = load_template("template.html")
+            print(template_content)
+        except Exception as e:
+            print(f"Error loading template: {e}")
 
         # Generate the dynamic body content
         body_content = f"""
