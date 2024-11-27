@@ -72,8 +72,6 @@ jobs:
     needs:
       - release-build
 
-    if: true
-
     steps:
       - name: Retrieve release distributions
         uses: actions/download-artifact@v4
