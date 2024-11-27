@@ -17,7 +17,7 @@ setup(
         "parse",
         "Pillow",
         "requests",
-        "scipy"
+        "scipy",
     ],
     entry_points={
         'console_scripts': [
