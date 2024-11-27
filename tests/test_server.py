@@ -25,17 +25,17 @@ class FitsPreviewServerTest(unittest.TestCase):
         logging.info("Starting server...")
         try:
             cls.server_process = subprocess.Popen(
-                ['python', 'pyfitsserver/server.py'],
+                ['pyfitsserver'],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
             cls._ensure_server_running()
         except Exception as e:
             logging.error(f"Failed to start server: {e}")
-            raise
+            raise e
 
     @classmethod
-    def _ensure_server_running(cls, retries=30, delay=2):
+    def _ensure_server_running(cls, retries=2, delay=2):
         """Ensure the server is running by performing a health check with retries."""
         health_url = 'http://127.0.0.1:5000/health'
         for i in range(retries):
