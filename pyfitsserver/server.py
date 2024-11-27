@@ -13,7 +13,7 @@ import astropy.units as u
 try:
     from color_tables import aia_color_table, aia_wave_dict
 except ModuleNotFoundError:
-    from fits_preview_server.color_tables import aia_color_table, aia_wave_dict
+    from pyfitsserver.color_tables import aia_color_table, aia_wave_dict
 
 aia_channels = [str(int(key.value)) for key in aia_wave_dict.keys()]
 

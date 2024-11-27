@@ -7,6 +7,7 @@ setup(
     author='Gilly',
     author_email='gilly@swri.org',
     url='https://github.com/GillySpace27/pyFitsServer',
+    readme="README.md",
     packages=find_packages(),
     install_requires=[
         "Flask",

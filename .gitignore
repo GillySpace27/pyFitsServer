@@ -9,3 +9,4 @@ server.log
 pyfitsserver.egg-info/
 dist/
 *.log
+build/
