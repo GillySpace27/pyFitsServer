@@ -152,7 +152,7 @@ async def preview_rendered():
 
         # Load the static template from an HTML file
         try:
-            template_content = load_template("fits_preview_server/template.html")
+            template_content = load_template("pyfitsserver/template.html")
         except:
             template_content = load_template("template.html")
 

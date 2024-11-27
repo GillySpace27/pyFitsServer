@@ -5,7 +5,7 @@ include requirements.txt
 include setup.py
 
 # Recursively include everything under the package directories
-recursive-include fits_preview_server *
+recursive-include pyfitsserver *
 recursive-include tests *
 
 # Exclude specific files and patterns

@@ -29,7 +29,7 @@ cmap_data_dir = os.path.join(
 if not os.path.exists(cmap_data_dir):
     cmap_data_dir = "idl_3.csv"
 if not os.path.exists(cmap_data_dir):
-    cmap_data_dir = "fits_preview_server/idl_3.csv"
+    cmap_data_dir = "pyfitsserver/idl_3.csv"
 
 assert os.path.exists(cmap_data_dir), f"Could not find cmap_data_dir: {cmap_data_dir}"
 
