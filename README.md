@@ -59,7 +59,7 @@ To install and run **pyFitsServer** from github, follow these steps:
     ```
     or invoke the startup script
     ```bash
-    pyfitsserver
+    python -m pyfitsserver
     ```
 
 6. **Confirm the server is running properly by running tests (from the project root)**:
