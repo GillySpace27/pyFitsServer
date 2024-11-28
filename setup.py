@@ -11,7 +11,7 @@ setup(
     url='https://github.com/GillySpace27/pyFitsServer',
     packages=find_packages(),
     install_requires=[
-        "Flask>=2.0,<3.0",
+        "Flask[async]>=2.0,<3.0",
         "numpy",
         "astropy",
         "matplotlib",
