@@ -1,18 +1,36 @@
 # pyFitsServer
 
-**pyFitsServer** is a lightweight server to facilitate the rendering and previewing of FITS (Flexible Image Transport System) files. It is designed to work in conjunction with the **pyFitsVSC** Visual Studio Code extension, providing backend services to support the frontend visualization capabilities.
+[**pyFitsServer**](https://github.com/GillySpace27/pyfitsserver) is a lightweight server to facilitate the rendering and previewing of FITS (Flexible Image Transport System) files. It is designed to work in conjunction with the [**pyFitsVSC**](https://github.com/GillySpace27/pyfitsvsc) Visual Studio Code extension, providing backend services to support the frontend visualization capabilities.
 
 ## Description
 
-The **pyFitsServer** acts as the backend server for serving FITS file previews. It processes the FITS files and provides the necessary data and/or images to the **pyFitsVSC** extension.
+The **pyFitsServer** acts as a backend server for serving FITS file previews. It processes the FITS files and provides the necessary data and/or images to the **pyFitsVSC** extension. This server is general enough to serve FITS previews to other clients, too.
 
-## Prerequisites
+<!-- ## Prerequisites -->
 
-To run the **pyFitsServer**, you need to have Python installed on your system. It is recommended to use a virtual environment to manage dependencies.
 
 ## Installation
 
-To install and run **pyFitsServer**, follow these steps:
+### Install from Pypi
+To install **pyFitsServer** from pypi:
+1. **Make a virtual environment**
+    This will help to manage project dependencies.
+
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+2. **Use pip to install the package**
+    ```bash
+    pip install pyfitsserver
+    ```
+3. **Run the server**
+    ```bash
+    python -m pyfitsserver
+    ```
+
+### Build from Source
+To install and run **pyFitsServer** from github, follow these steps:
 
 1. **Clone the repository**:
     ```bash
@@ -25,9 +43,12 @@ To install and run **pyFitsServer**, follow these steps:
     ```
 
 3. **Create a virtual environment (optional but recommended)**:
+
+    This will help to manage project dependencies.
+
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 4. **Install the dependencies**:
@@ -38,6 +59,10 @@ To install and run **pyFitsServer**, follow these steps:
 5. **Run the server**:
     ```bash
     python server.py
+    ```
+    or invoke the startup script
+    ```bash
+    pyfitsserver
     ```
 
 6. **Confirm the server is running properly by running tests (from the project root)**:
@@ -101,5 +126,3 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
-
-With these updates, users should have a comprehensive guide to installing, running, and using both `pyFitsServer` and the `pyFitsVSC` extension. If you find these changes satisfactory or if there are any additional details you'd like to include, please let me know.
