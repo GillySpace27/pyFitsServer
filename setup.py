@@ -23,7 +23,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pyfitsserver=pyfitsserver.server:main',
+            "install_pyFitsVSC=pyFitsServer.install_pyFitsVSC:install_vscode_extension",
+            'pyfitsserver=pyFitsServer.server:main',
         ],
     },
     include_package_data=True,

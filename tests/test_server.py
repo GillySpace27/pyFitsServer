@@ -1,5 +1,3 @@
-# tests/test_server.py
-
 import unittest
 import io
 import os
@@ -12,6 +10,9 @@ import logging
 import webbrowser
 from astropy.io import fits
 from PIL import Image
+import importlib.resources as pkg_resources
+from contextlib import contextmanager
+import pyfitsserver.data  # assuming pyfitsserver is your package
 
 # Variable to control whether to open the browser
 OPEN_BROWSER = False
@@ -149,40 +150,40 @@ class FitsPreviewServerTest(unittest.TestCase):
 
     def test_combined_real_fits_preview(self):
         """Test preview generation and rendered preview for a real FITS file with a dynamically chosen EXTNAME."""
-        fits_file_path = 'tests/AIA20130101_0000_0171.fits'
         list_extnames_url = 'http://127.0.0.1:5000/list_extnames'
 
-        with open(fits_file_path, 'rb') as fits_file:
-            response = requests.post(list_extnames_url, files={'file': ('AIA20130101_0000_0171.fits', fits_file)})
-            response.raise_for_status()
-            extnames = response.json().get("extnames", [])
-            if not extnames:
-                self.skipTest("No EXTNAMEs found in FITS file")
-            logging.info(f"Extnames found: {extnames}")
+        with pkg_resources.files(pyfitsserver.data).joinpath('aia_171_test_img.fits') as fits_path:
+            with open(fits_path, 'rb') as fits_file:
+                response = requests.post(list_extnames_url, files={'file': ('AIA20130101_0000_0171.fits', fits_file)})
+                response.raise_for_status()
+                extnames = response.json().get("extnames", [])
+                if not extnames:
+                    self.skipTest("No EXTNAMEs found in FITS file")
+                logging.info(f"Extnames found: {extnames}")
 
-        extname = extnames[-1]
+            extname = extnames[-1]
 
-        with open(fits_file_path, 'rb') as fits_file:
-            response = requests.post(
-                'http://127.0.0.1:5000/preview',
-                files={'file': ('AIA20130101_0000_0171.fits', fits_file)},
-                data={'extname': extname}
-            )
-            response.raise_for_status()
+            with open(fits_path, 'rb') as fits_file:
+                response = requests.post(
+                    'http://127.0.0.1:5000/preview',
+                    files={'file': ('AIA20130101_0000_0171.fits', fits_file)},
+                    data={'extname': extname}
+                )
+                response.raise_for_status()
 
-        response_data = response.json()
-        self.assertIn('image_base64', response_data)
+            response_data = response.json()
+            self.assertIn('image_base64', response_data)
 
-        image_data = base64.b64decode(response_data['image_base64'])
-        with Image.open(io.BytesIO(image_data)) as img:
-            img.verify()
+            image_data = base64.b64decode(response_data['image_base64'])
+            with Image.open(io.BytesIO(image_data)) as img:
+                img.verify()
 
-        logging.info(f"Real FITS file preview test PASSED for EXTNAME: {extname}")
+            logging.info(f"Real FITS file preview test PASSED for EXTNAME: {extname}")
 
-        if OPEN_BROWSER:
-            preview_url = f'http://127.0.0.1:5000/preview_rendered?file={fits_file_path}&extname={extname}'
-            webbrowser.open(preview_url)
-            logging.info(f"Opened browser to {preview_url}")
+            if OPEN_BROWSER:
+                preview_url = f'http://127.0.0.1:5000/preview_rendered?file={fits_path}&extname={extname}'
+                webbrowser.open(preview_url)
+                logging.info(f"Opened browser to {preview_url}")
 
 if __name__ == '__main__':
     warnings.simplefilter("ignore", ResourceWarning)
