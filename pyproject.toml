@@ -38,7 +38,7 @@ dev = ["setuptools>=42", "wheel"]
 
 [project.scripts]
 pyfitsserver = "pyfitsserver.server:main"
-install_pyFitsVSC = "pyfitsserver.install_pyfitsVSC:install_vscode_extension"
+install_vscode_extension = "pyfitsserver.lib.install_pyfitsVSC:install_vscode_extension"
 
 [tool.flit.metadata]
 module = "pyfitsserver"
