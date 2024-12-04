@@ -1,22 +1,45 @@
-from flask import Flask, request, jsonify
-import numpy as np
-from astropy.io import fits
-import matplotlib.pyplot as plt
-from matplotlib import use as mpl_use
+import subprocess
 import io
 import os
 import logging
-import pathlib
 import traceback
+import pathlib
 from time import time
 import base64
+import numpy as np
+import importlib.util
 import astropy.units as u
+from astropy.io import fits
+from flask import Flask, request, jsonify
+from matplotlib import pyplot as plt
+from matplotlib import use as mpl_use
 import importlib.resources as pkg_resources
 
+# Function to dynamically import a module and handle fallback
+def dynamic_import(module_name, fallback_name):
+    module_spec = importlib.util.find_spec(module_name)
+    if module_spec is not None:
+        module = importlib.util.module_from_spec(module_spec)
+        module_spec.loader.exec_module(module)
+        return module
+    else:
+        logging.warning(f"{module_name} not found, trying {fallback_name}...")
+        fallback_spec = importlib.util.find_spec(fallback_name)
+        if fallback_spec is not None:
+            module = importlib.util.module_from_spec(fallback_spec)
+            fallback_spec.loader.exec_module(module)
+            return module
+        else:
+            raise ModuleNotFoundError(f"Neither {module_name} nor {fallback_name} could be imported.")
+
+# Try to import the color_tables module
 try:
-    from color_tables import aia_color_table, aia_wave_dict
-except ModuleNotFoundError:
-    from pyfitsserver.color_tables import aia_color_table, aia_wave_dict
+    color_tables = dynamic_import("pyfitsserver.lib.color_tables", "color_tables")
+    aia_color_table = color_tables.aia_color_table
+    aia_wave_dict = color_tables.aia_wave_dict
+except ModuleNotFoundError as e:
+    logging.error(f"Failed to import color tables: {e}")
+    raise
 
 aia_channels = [str(int(key.value)) for key in aia_wave_dict.keys()]
 
@@ -31,9 +54,7 @@ def configure_logging():
     """
     # Get the absolute path to the directory containing the current script
     log_dir = pathlib.Path(__file__).parent.absolute() / 'logs'
-
-    # Ensure the log directory exists
-    log_dir.mkdir(parents=True, exist_ok=True)
+    log_dir.mkdir(parents=True, exist_ok=True)  # Ensure the log directory exists
 
     # Define the log file path
     log_file = log_dir / "server.log"
@@ -41,7 +62,7 @@ def configure_logging():
     # Configure logging
     logging.basicConfig(
         level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - \n\t\t\t%(message)s\n',
+        format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
             logging.FileHandler(log_file),
             logging.StreamHandler()
@@ -50,15 +71,11 @@ def configure_logging():
     logger = logging.getLogger(__name__)
     return logger
 
-
 # Call the configure_logging function to set up logging
 logger = configure_logging()
-
-# You can now use the logger
 logger.info("Logging is configured and ready to use.")
 
 start_time = time()
-
 the_norm = "rankdata"
 
 def process_fits_hdu(hdu):
@@ -66,14 +83,14 @@ def process_fits_hdu(hdu):
     im = hdu.data.astype(np.float32)
     if im is None:
         raise ValueError("HDU data is None")
-    if np.isnan(im).sum() / np.isfinite(im).sum() > 1.0:
+    if np.isnan(im).sum() / np.isfinite(im).sum() > 0.5:
         raise ValueError("HDU data contains more than 50% NaNs")
     the_mean = np.nanmean(im)
     the_std = np.nanstd(im)
     im -= the_mean
     im /= 0.25 * the_std
     the_min, the_max = 1.05 * np.nanmin(im), np.nanmax(im)
-    im_normalized = (im - the_min) / (the_max-the_min + 1e-5)
+    im_normalized = (im - the_min) / (the_max - the_min + 1e-5)
     return np.log10(im_normalized + 1e-5)
 
 def generate_image_base64(data, cmap="viridis"):
@@ -85,10 +102,8 @@ def generate_image_base64(data, cmap="viridis"):
     shp = data.shape
     data = rankdata(data.flatten()) / len(data.flatten())
     data = data.reshape(*shp)
-    print(data.shape)
-    mean, std = np.nanmean(data), np.nanstd(data)
 
-    ax.imshow(data, origin="lower", cmap=cmap, vmin=0, vmax=1) # , vmin=mean-2*std, vmax=mean+2*std)
+    ax.imshow(data, origin="lower", cmap=cmap, vmin=0, vmax=1)
     ax.axis('off')
     img_buffer = io.BytesIO()
     fig.savefig(img_buffer, format='png', bbox_inches='tight', pad_inches=0)
@@ -101,15 +116,11 @@ def get_wavelength(file, hdul):
     cmap = aia_color_table(wave[0] * u.angstrom) if wave else "gray"
     return wave, cmap
 
-
 def get_fits_hdu_and_cmap(file, extname="compressed"):
-
     file.seek(0)
-
     with fits.open(io.BytesIO(file.read())) as hdul:
         extnames = [h.header.get('EXTNAME', "PRIMARY") for h in hdul if h.data is not None]
         wave, cmap = get_wavelength(file, hdul)
-
         try:
             if extname.isdigit() or (extname.startswith('-') and extname[1:].isdigit()):
                 index = int(extname)
@@ -136,10 +147,24 @@ def handle_error(e):
     logger.error(traceback.format_exc())
     return jsonify({"error": str(e)}), 500
 
-# Load the static parts from the template
-# def load_template(template_path):
-#     with open(template_path, 'r') as file:
-#         return file.read()
+def load_template(template_name="template.html"):
+    """Load the content of the given template from the 'pyfitsserver' package."""
+    if "lib" not in template_name:
+        # template_name = os.path.join("lib", template_name)
+        # print(template_name)
+        pass
+    try:
+        template_content = pkg_resources.read_text('pyfitsserver', template_name)
+    except FileNotFoundError:
+        try:
+            template_content = pkg_resources.read_text(__package__, template_name)
+        except FileNotFoundError as fnf_error:
+            raise RuntimeError(f"Template {template_name} not found in the specified packages.") from fnf_error
+        except Exception as e:
+            raise RuntimeError(f"An error occurred while loading template {template_name}.") from e
+    except Exception as e:
+        raise RuntimeError(f"An error occurred while accessing the template {template_name}.") from e
+    return template_content
 
 @app.route('/preview', methods=['POST'])
 async def preview():
@@ -155,40 +180,6 @@ async def preview():
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return handle_error(e)
-
-
-import importlib.resources as pkg_resources
-
-def load_template(template_name="template.html"):
-    """
-    Load the content of the given template from the 'pyfitsserver' package.
-
-    Parameters:
-        template_name (str): The name of the template file to be loaded.
-
-    Returns:
-        str: Content of the template file.
-
-    Raises:
-        RuntimeError: If the template file cannot be found or read.
-    """
-    try:
-        # Attempt to read the template from the pyfitsserver package
-        template_content = pkg_resources.read_text('pyfitsserver', template_name)
-    except FileNotFoundError:
-        try:
-            # Fallback to the current package if file is not found in pyfitsserver
-            template_content = pkg_resources.read_text(__package__, template_name)
-        except FileNotFoundError as fnf_error:
-            raise RuntimeError(f"Template {template_name} not found in the specified packages.") from fnf_error
-        except Exception as e:
-            raise RuntimeError(f"An error occurred while loading template {template_name}.") from e
-    except Exception as e:
-        raise RuntimeError(f"An error occurred while accessing the template {template_name}.") from e
-
-    return template_content
-
-
 
 @app.route('/preview_rendered', methods=['POST', 'GET'])
 async def preview_rendered():
@@ -210,11 +201,8 @@ async def preview_rendered():
         image_base64 = generate_image_base64(im_normalized, cmap)
 
         # Load the static template from an HTML file
-        try:
-            template_content = load_template("template.html")
-            print(template_content)
-        except Exception as e:
-            print(f"Error loading template: {e}")
+        template_content = load_template("template.html")
+        print(template_content)
 
         # Generate the dynamic body content
         body_content = f"""

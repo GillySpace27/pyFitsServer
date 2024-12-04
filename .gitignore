@@ -10,3 +10,6 @@ pyfitsserver.egg-info/
 dist/
 *.log
 build/
+nohup.out
+.DS_Store
+pyfitsserver/lib/pyfitsvsc*

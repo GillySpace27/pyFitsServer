@@ -5,6 +5,10 @@ import os
 from importlib.resources import files
 import requests
 
+url = "https://github.com/GillySpace27/pyFitsServer/releases/download/v0.0.26/pyfitsvsc-0.0.4.vsix"
+local_filename = "pyfitsserver/lib/pyfitsvsc-0.0.4.vsix"
+
+
 def is_vscode_installed():
     try:
         # Check if VSCode is installed by running 'code --version'
@@ -14,8 +18,6 @@ def is_vscode_installed():
         return False
 
 def download_vscode_extension():
-    url = "https://github.com/GillySpace27/pyFitsServer/releases/download/v0.0.26/pyfitsvsc-0.0.4.vsix"
-    local_filename = "pyfitsserver/lib/pyfitsvsc-0.0.4.vsix"
 
     # Ensure the directory exists
     os.makedirs(os.path.dirname(local_filename), exist_ok=True)

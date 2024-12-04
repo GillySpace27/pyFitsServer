@@ -27,7 +27,7 @@ __all__ = [
 ]
 
 def get_cmap_data_dir():
-    cmap_data_file = files("pyfitsserver").joinpath("idl_3.csv")
+    cmap_data_file = files("pyfitsserver.lib").joinpath("idl_3.csv")
     if not os.path.exists(cmap_data_file):
         raise FileNotFoundError(f"Could not find cmap_data_dir: {cmap_data_file}")
     return cmap_data_file
