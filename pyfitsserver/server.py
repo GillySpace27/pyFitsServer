@@ -6,6 +6,7 @@ from matplotlib import use as mpl_use
 import io
 import os
 import logging
+import pathlib
 import traceback
 from time import time
 import base64
@@ -23,16 +24,38 @@ mpl_use('Agg')  # Non-interactive backend for Matplotlib
 
 app = Flask("pyFitsServer")
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - \n\t\t\t%(message)s\n',
-    handlers=[
-        logging.FileHandler("server.log"),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+def configure_logging():
+    """
+    Configures the logging settings for the script, setting up both
+    file and stream handlers.
+    """
+    # Get the absolute path to the directory containing the current script
+    log_dir = pathlib.Path(__file__).parent.absolute() / 'logs'
+
+    # Ensure the log directory exists
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    # Define the log file path
+    log_file = log_dir / "server.log"
+
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - \n\t\t\t%(message)s\n',
+        handlers=[
+            logging.FileHandler(log_file),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+    return logger
+
+
+# Call the configure_logging function to set up logging
+logger = configure_logging()
+
+# You can now use the logger
+logger.info("Logging is configured and ready to use.")
 
 start_time = time()
 
@@ -134,16 +157,37 @@ async def preview():
         return handle_error(e)
 
 
+import importlib.resources as pkg_resources
+
 def load_template(template_name="template.html"):
-    # Uses importlib.resources to locate the template within the package
+    """
+    Load the content of the given template from the 'pyfitsserver' package.
+
+    Parameters:
+        template_name (str): The name of the template file to be loaded.
+
+    Returns:
+        str: Content of the template file.
+
+    Raises:
+        RuntimeError: If the template file cannot be found or read.
+    """
     try:
+        # Attempt to read the template from the pyfitsserver package
         template_content = pkg_resources.read_text('pyfitsserver', template_name)
     except FileNotFoundError:
-        # Fallback to the root package location if not found in the specified sub-package
-        template_content = pkg_resources.read_text(__package__, template_name)
+        try:
+            # Fallback to the current package if file is not found in pyfitsserver
+            template_content = pkg_resources.read_text(__package__, template_name)
+        except FileNotFoundError as fnf_error:
+            raise RuntimeError(f"Template {template_name} not found in the specified packages.") from fnf_error
+        except Exception as e:
+            raise RuntimeError(f"An error occurred while loading template {template_name}.") from e
     except Exception as e:
-        raise RuntimeError(f"Could not load template {template_name}: {e}")
+        raise RuntimeError(f"An error occurred while accessing the template {template_name}.") from e
+
     return template_content
+
 
 
 @app.route('/preview_rendered', methods=['POST', 'GET'])
