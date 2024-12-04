@@ -7,7 +7,7 @@ import requests
 
 url = "https://github.com/GillySpace27/pyFitsServer/releases/download/v0.0.26/pyfitsvsc-0.0.4.vsix"
 local_filename = "pyfitsserver/lib/pyfitsvsc-0.0.4.vsix"
-
+vsix_filename = "pyfitsvsc-0.0.4.vsix"
 
 def is_vscode_installed():
     try:
@@ -35,7 +35,12 @@ def download_vscode_extension():
         sys.exit(1)
 
 def install_vscode_extension():
-    vsix_filename = "pyfitsvsc-0.0.4.vsix"
+
+    # Check if VSCode is installed
+    if not is_vscode_installed():
+        logging.error("VSCode is not installed. Please install VSCode first.")
+        sys.exit(1)
+
     try:
         # Locate the .vsix file in the package
         vsix_path = files("pyfitsserver.lib").joinpath(vsix_filename)
@@ -50,10 +55,6 @@ def install_vscode_extension():
             logging.error(f"VSCode extension file still not found at: {vsix_path}")
             sys.exit(1)
 
-        # Check if VSCode is installed
-        if not is_vscode_installed():
-            logging.error("VSCode is not installed. Please install VSCode first.")
-            sys.exit(1)
 
         # Try to install the extension using the VSCode CLI
         logging.info(f"Attempting to install VSCode extension from {vsix_path}")
