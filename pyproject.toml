@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyfitsserver"
-version = "0.0.27"
+version = "0.0.28"
 description = "A lightweight server to facilitate the rendering and previewing of FITS files."
 readme = "README.md"
 authors = [
