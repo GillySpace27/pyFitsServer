@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyfitsserver"
-version = "0.0.26"
+version = "0.0.27"
 description = "A lightweight server to facilitate the rendering and previewing of FITS files."
 readme = "README.md"
 authors = [
@@ -38,6 +38,7 @@ dev = ["setuptools>=42", "wheel"]
 
 [project.scripts]
 pyfitsserver = "pyfitsserver.server:main"
+install_pyFitsVSC = "pyfitsserver.install_pyfitsVSC:install_vscode_extension"
 
 [tool.flit.metadata]
 module = "pyfitsserver"
