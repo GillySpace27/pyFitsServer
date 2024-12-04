@@ -18,6 +18,7 @@ setup(
         "parse",
         "Pillow",
         "requests",
+        "scipy",
         "Werkzeug==2.2.2",  # Explicitly pinned version
     ],
     entry_points={

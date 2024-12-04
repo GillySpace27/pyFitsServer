@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyfitsserver"
+version = "0.0.24"
+description = "A lightweight server to facilitate the rendering and previewing of FITS files."
+readme = "README.md"
+authors = [
+    { name="Gilly", email="gilly@swri.org" }
+]
+requires-python = ">=3.8"
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 3',
+]
+keywords = ["FITS", "Astrophysics", "Server", "Flask"]
+license = {text = "MIT License"}
+urls = { "Home" = "https://github.com/GillySpace27/pyFitsServer" }
+
+dependencies = [
+    "Flask[async]>=2.0,<3.0",
+    "numpy",
+    "astropy",
+    "matplotlib",
+    "parse",
+    "Pillow",
+    "requests",
+    "scipy",
+    "Werkzeug==2.2.2"
+]
+
+[project.optional-dependencies]
+dev = ["setuptools>=42", "wheel"]
+
+[project.scripts]
+pyfitsserver = "pyfitsserver.server:main"
+
+[tool.flit.metadata]
+module = "pyfitsserver"
